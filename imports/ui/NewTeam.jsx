@@ -11,7 +11,7 @@ class NewTeam extends Component {
       name: '',
     };
     Groups.forEach((group) => {
-      this.state[group.name] = group.countries[0].name;
+      this.state[group.name] = group.countries[0];
     });
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,7 +36,7 @@ class NewTeam extends Component {
       countries.push(this.state[group.name]);
     });
     let that = this;
-debugger
+
     if (!Teams.find({name}).count()) {
       Teams.insert({ name,
                      countries,
@@ -63,7 +63,7 @@ debugger
 
   renderCountries(countries) {
     return countries.map((country) => (
-      <option value={country.name}>{country.name}</option>
+      <option value={country}>{country}</option>
     ));
   }
 
