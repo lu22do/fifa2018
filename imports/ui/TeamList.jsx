@@ -14,17 +14,28 @@ class TeamList extends Component {
     });
   }
 
+  renderCountries(countries) {
+    return countries.map((country) => {
+      const src = '/img/' + country.replace(' ', '_') + '.png';
+
+      return (
+        <div>
+          <img width="23" height="15" src={src} /> {country}
+        </div>
+      )
+    });
+  }
+
   renderTeams() {
     return this.props.teams().map((team) => (
       <tr key={team.id}>
         <td>{team.name}</td>
-        <td>{team.attribute}</td>
+        <td>{this.renderCountries(team.countries)}</td>
         <td>{team.ownername}</td>
         <td>{team.created}</td>
         <td>
           {team.isMyTeam &&
             <div>
-              <Link to={`/edit-team/${team.id}`}>Edit</Link> /&nbsp;
               <a onClick={this.deleteTeam} data-id={team.id} href="">Delete</a>
             </div>
           }
@@ -43,7 +54,7 @@ class TeamList extends Component {
               <thead>
               <tr>
                 <th>Name</th>
-                <th>Attribute</th>
+                <th>Countries</th>
                 <th>Owner</th>
                 <th>Creation date</th>
                 <th>Action</th>
@@ -76,7 +87,7 @@ export default withTracker(props => {
       }
 
       return {name: team.name,
-              attribute: team.attribute,
+              countries: team.countries,
               created: moment(team.created).calendar(),
               id: team._id,
               ownername: user ? user.username : "unknown",

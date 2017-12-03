@@ -2,19 +2,23 @@ import React, { Component } from 'react';
 import Teams from '../../lib/globals';
 import { withRouter } from 'react-router-dom'; // makes history available in props
 
+import Groups from '../../lib/groups'
+
 class NewTeam extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
-      attribute: ''
     };
+    Groups.forEach((group) => {
+      this.state[group.name] = group.countries[0].name;
+    });
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleInputChange(event) {
+  handleChange(event) {
     const value = event.target.value;
     const name = event.target.name;
 
@@ -27,14 +31,16 @@ class NewTeam extends Component {
     event.preventDefault();
 
     let name = this.state.name;
-    let attribute = this.state.attribute;
+    let countries = [];
+    Groups.forEach((group) => {
+      countries.push(this.state[group.name]);
+    });
     let that = this;
-
+debugger
     if (!Teams.find({name}).count()) {
-      Teams.insert(
-        { name,
-          attribute,
-          owner: Meteor.userId() },
+      Teams.insert({ name,
+                     countries,
+                     owner: Meteor.userId() },
         function(err, _id) {
           if (err) {
             alert('Unexpected error creating this team! (' + err + ')');
@@ -50,10 +56,30 @@ class NewTeam extends Component {
       alert('This team already exists! Could not create it.')
       this.setState({
         name: '',
-        attribute: ''
       });
     }
     return false;
+  }
+
+  renderCountries(countries) {
+    return countries.map((country) => (
+      <option value={country.name}>{country.name}</option>
+    ));
+  }
+
+  renderGroupSelectors() {
+    return Groups.map((group) => {
+      let value = this.state[group.name];
+
+      return (
+        <div className="form-group">
+          <label>Select a country for {group.name}</label><br/>
+          <select name={group.name} value={value} onChange={this.handleChange}>
+            {this.renderCountries(group.countries)}
+          </select>
+        </div>
+      )
+    });
   }
 
   render() {
@@ -66,15 +92,10 @@ class NewTeam extends Component {
             <label>Team name</label>
             <input className="form-control" type="text" name="name"
               value={this.state.name}
-              onChange={this.handleInputChange} />
+              onChange={this.handleChange} />
           </div>
 
-          <div className="form-group">
-            <label>Team attribute</label>
-            <input className="form-control" type="text" name="attribute"
-              value={this.state.attribute}
-              onChange={this.handleInputChange} />
-          </div>
+          {this.renderGroupSelectors()}
 
           <input className="btn btn-default" type="submit" value="Create"/>
 

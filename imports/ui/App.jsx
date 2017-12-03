@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
 import TopBar from './TopBar.jsx';
 import TeamList from './TeamList.jsx';
 import NewTeam from './NewTeam.jsx';
-import EditTeam from './EditTeam.jsx';
 import Users from './Users.jsx';
 import Login from './Login.jsx';
 import Register from './Register.jsx';
@@ -42,7 +41,6 @@ export default class App extends Component {
           <Route path="/register" component={Register}/>
           <PrivateRoute path='/team-list' component={TeamList}/>
           <PrivateRoute path='/new-team' component={NewTeam}/>
-          <PrivateRoute path='/edit-team/:id' component={EditTeam}/>
           <PrivateRoute path='/users' component={Users}/>
         </div>
       </BrowserRouter>
