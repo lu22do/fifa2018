@@ -85,7 +85,7 @@ class NewTeam extends Component {
   render() {
     return (
       <div className="container">
-        <h3>Create new team:</h3>
+        <h3>Create a new team:</h3>
         <form id="new-team-form" action="action" onSubmit={this.handleSubmit}>
 
           <div className="form-group">
