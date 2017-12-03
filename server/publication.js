@@ -1,22 +1,22 @@
 // call everytime someone subscribes (or unsubscribes (logout)) 
-Meteor.publish("stuffs", function () {
-  return Stuffs.find(); 
+Meteor.publish("teams", function () {
+  return Teams.find(); 
 
-/* ---> to return only stuff owned by user:
+/* ---> to return only team owned by user:
   var user = Meteor.users.findOne(this.userId);
 
   if (user) {
 		if (user.username === 'admin') {
-		  return Stuffs.find(); 
+		  return Teams.find(); 
 		}
 		else {
-		  return Stuffs.find({owner: this.userId}); 	
+		  return Teams.find({owner: this.userId}); 	
 		}  	
   }
 */
 });
 
-Stuffs.allow({
+Teams.allow({
   insert: function (userId, doc) {
     // the user must be logged in, and the document must be owned by the user
     return (userId && doc.owner === userId);
@@ -35,7 +35,7 @@ Stuffs.allow({
   fetch: ['owner']
 });
 
-Stuffs.deny({
+Teams.deny({
   update: function (userId, doc, fields, modifier) {
     // can't change owners
     return _.contains(fields, 'owner');

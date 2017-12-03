@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 import App from '../imports/ui/App.jsx';
 
-Meteor.subscribe('stuffs');
+Meteor.subscribe('teams');
 Meteor.subscribe('userData');
 
 Meteor.startup(() => {
@@ -36,16 +36,16 @@ Router.map(function(){
     this.render('main');
   });
 
-   this.route('/stuffs', function () {
-     this.render('stuffs');
+   this.route('/teams', function () {
+     this.render('teams');
    });
 
-  this.route('/newstuff');
+  this.route('/newteam');
 
-  this.route('/editstuff/:_id', {
-    template: 'editstuff',
+  this.route('/editteam/:_id', {
+    template: 'editteam',
     data: function(){
-      return Stuffs.findOne(this.params._id);
+      return Teams.findOne(this.params._id);
     }
   });
 

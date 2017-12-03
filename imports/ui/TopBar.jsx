@@ -33,7 +33,7 @@ class TopBar extends Component {
               <span className="icon-bar"></span>
             </button>
 
-            <Link className="navbar-brand" to="/">Brand</Link>
+            <Link className="navbar-brand" to="/">The FIFA 2018 Game</Link>
           </div>
 
           {currentUser &&
@@ -41,14 +41,14 @@ class TopBar extends Component {
               <ul className="nav navbar-nav">
 
                 <li>
-                  <NavLink to="/stuff-list" activeClassName="active">
-                    <span className="glyphicon glyphicon-th-list"></span> Stuffs
+                  <NavLink to="/team-list" activeClassName="active">
+                    <span className="glyphicon glyphicon-th-list"></span> Your Teams
                   </NavLink>
                 </li>
 
                 <li>
-                  <NavLink to="/new-stuff" activeClassName="active">
-                    <span className="glyphicon glyphicon-plus"></span> Add stuff
+                  <NavLink to="/new-team" activeClassName="active">
+                    <span className="glyphicon glyphicon-plus"></span> New team
                   </NavLink>
                 </li>
 

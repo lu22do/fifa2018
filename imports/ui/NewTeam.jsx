@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Stuffs from '../../lib/globals';
+import Teams from '../../lib/globals';
 import { withRouter } from 'react-router-dom'; // makes history available in props
 
-class NewStuff extends Component {
+class NewTeam extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,24 +30,24 @@ class NewStuff extends Component {
     let attribute = this.state.attribute;
     let that = this;
 
-    if (!Stuffs.find({name}).count()) {
-      Stuffs.insert(
+    if (!Teams.find({name}).count()) {
+      Teams.insert(
         { name,
           attribute,
           owner: Meteor.userId() },
         function(err, _id) {
           if (err) {
-            alert('Unexpected error creating this stuff! (' + err + ')');
+            alert('Unexpected error creating this team! (' + err + ')');
             that.props.history.push('/');
           }
           else {
-            that.props.history.push('/stuff-list');
+            that.props.history.push('/team-list');
           }
         }
       );
     }
     else {
-      alert('This stuff already exists! Could not create it.')
+      alert('This team already exists! Could not create it.')
       this.setState({
         name: '',
         attribute: ''
@@ -59,18 +59,18 @@ class NewStuff extends Component {
   render() {
     return (
       <div className="container">
-        <h3>Create new stuff:</h3>
-        <form id="new-stuff-form" action="action" onSubmit={this.handleSubmit}>
+        <h3>Create new team:</h3>
+        <form id="new-team-form" action="action" onSubmit={this.handleSubmit}>
 
           <div className="form-group">
-            <label>Stuff name</label>
+            <label>Team name</label>
             <input className="form-control" type="text" name="name"
               value={this.state.name}
               onChange={this.handleInputChange} />
           </div>
 
           <div className="form-group">
-            <label>Stuff attribute</label>
+            <label>Team attribute</label>
             <input className="form-control" type="text" name="attribute"
               value={this.state.attribute}
               onChange={this.handleInputChange} />
@@ -84,4 +84,4 @@ class NewStuff extends Component {
   }
 }
 
-export default withRouter(NewStuff);
+export default withRouter(NewTeam);
