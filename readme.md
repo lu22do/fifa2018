@@ -23,3 +23,4 @@ Todo:
 - edit team
 - use radio button for winner
 - use alphabetical order for teams
+- max 3 teams
