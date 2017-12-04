@@ -60,6 +60,15 @@ Matchs.allow({
   }
 });
 
+// Countries
+Meteor.publish("countries", function () {
+  return Countries.find();
+});
+
+Countries.allow({
+  // nothing
+});
+
 // user data
 Meteor.publish("userData", function () {
   return Meteor.users.find({},

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import Countries from '../../lib/countries';
+import CountryList from '../../lib/countryList';
 
 // Updates itself with the 2 possible countries
 class WinnerSelect extends Component {
@@ -42,11 +42,11 @@ export default class MatchEntry extends Component {
 
     this.state = {
       loaded: false,
-      country1: this.props.match ? this.props.match.country1 : Countries[0],
-      country2: this.props.match ? this.props.match.country2 : Countries[0],
+      country1: this.props.match ? this.props.match.country1 : CountryList[0],
+      country2: this.props.match ? this.props.match.country2 : CountryList[0],
       date: this.props.match ? this.props.match.date : '',
       score: this.props.match ? this.props.match.score : '',
-      winner: this.props.match ? this.props.match.country1 : Countries[0],
+      winner: this.props.match ? this.props.match.country1 : CountryList[0],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -61,8 +61,8 @@ export default class MatchEntry extends Component {
     });
   }
 
-  renderCountries() {
-    return Countries.map((country) => (
+  renderCountryList() {
+    return CountryList.map((country) => (
       <option value={country}>{country}</option>
     ));
   }
@@ -78,14 +78,14 @@ export default class MatchEntry extends Component {
           <div className="form-group">
             <label>First country</label><br/>
             <select name="country1" value={this.state.country1} onChange={this.handleChange}>
-              {this.renderCountries()}
+              {this.renderCountryList()}
             </select>
           </div>
 
           <div className="form-group">
             <label>Second country</label><br/>
             <select name="country2" value={this.state.country2} onChange={this.handleChange}>
-              {this.renderCountries()}
+              {this.renderCountryList()}
             </select>
           </div>
 

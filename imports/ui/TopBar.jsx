@@ -58,6 +58,12 @@ class TopBar extends Component {
                   </NavLink>
                 </li>
 
+                <li>
+                  <NavLink to="/country-list" activeClassName="active">
+                    <span className="glyphicon glyphicon-user"></span> Country list
+                  </NavLink>
+                </li>
+
                 {isAdmin &&
                   <li>
                     <NavLink to="/new-match" activeClassName="active">

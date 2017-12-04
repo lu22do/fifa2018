@@ -8,10 +8,10 @@ import NewTeam from './NewTeam.jsx';
 import Users from './Users.jsx';
 import Login from './Login.jsx';
 import Register from './Register.jsx';
-
 import MatchList from './MatchList.jsx';
 import MatchNew from './MatchNew.jsx';
 import MatchEdit from './MatchEdit.jsx';
+import CountryList from './CountryList.jsx';
 
 const Welcome = () => (
   <div className="container">
@@ -49,6 +49,7 @@ export default class App extends Component {
           <PrivateRoute path='/match-list' component={MatchList}/>
           <PrivateRoute path='/new-match' component={MatchNew}/>
           <PrivateRoute path='/edit-match/:id' component={MatchEdit}/>
+          <PrivateRoute path='/country-list' component={CountryList}/>
         </div>
       </BrowserRouter>
     )

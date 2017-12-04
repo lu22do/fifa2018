@@ -4,8 +4,15 @@ if (!Meteor.users.findOne({username: 'admin'})) {
   if (Meteor.settings.adminPassword) {
     password = Meteor.settings.adminPassword;
   }
-  if (!Accounts.createUser({username: 'admin', 
+  if (!Accounts.createUser({username: 'admin',
                  					  password: password})) {
     console.log('Admin account creation error');
   }
+}
+
+if (!Countries.find({}).count()) {
+  console.log('Creating Countries db');
+  CountryList.forEach((country) => {
+    Countries.insert({name: country});
+  });
 }
