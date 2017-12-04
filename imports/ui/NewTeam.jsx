@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Teams from '../../lib/globals';
+import Teams from '../../lib/teams';
 import { withRouter } from 'react-router-dom'; // makes history available in props
 
 import Groups from '../../lib/groups'

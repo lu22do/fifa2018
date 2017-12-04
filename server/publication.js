@@ -1,17 +1,18 @@
-// call everytime someone subscribes (or unsubscribes (logout)) 
+// Teams
+// call everytime someone subscribes (or unsubscribes (logout))
 Meteor.publish("teams", function () {
-  return Teams.find(); 
+  return Teams.find();
 
 /* ---> to return only team owned by user:
   var user = Meteor.users.findOne(this.userId);
 
   if (user) {
 		if (user.username === 'admin') {
-		  return Teams.find(); 
+		  return Teams.find();
 		}
 		else {
-		  return Teams.find({owner: this.userId}); 	
-		}  	
+		  return Teams.find({owner: this.userId});
+		}
   }
 */
 });
@@ -29,7 +30,7 @@ Teams.allow({
     var currentUser = Meteor.user();
 
     // can only remove your own documents
-    return doc.owner === userId || 
+    return doc.owner === userId ||
            (currentUser && currentUser.username === 'admin');
   },
   fetch: ['owner']
@@ -39,6 +40,23 @@ Teams.deny({
   update: function (userId, doc, fields, modifier) {
     // can't change owners
     return _.contains(fields, 'owner');
+  }
+});
+
+// Matchs
+Meteor.publish("matchs", function () {
+  return Matchs.find();
+});
+
+Matchs.allow({
+  insert: function (userId, doc) {
+    return Meteor.user().username === 'admin';
+  },
+  update: function (userId, doc, fields, modifier) {
+    return Meteor.user().username === 'admin';
+  },
+  remove: function (userId, doc) {
+    return Meteor.user().username === 'admin';
   }
 });
 

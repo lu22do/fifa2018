@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import App from '../imports/ui/App.jsx';
 
 Meteor.subscribe('teams');
+Meteor.subscribe('matchs');
 Meteor.subscribe('userData');
 
 Meteor.startup(() => {

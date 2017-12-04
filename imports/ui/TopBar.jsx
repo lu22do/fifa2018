@@ -41,7 +41,7 @@ class TopBar extends Component {
               <ul className="nav navbar-nav">
 
                 <li>
-                  <NavLink to="/team-list" activeClassName="active">
+                  <NavLink to="/team-list/user:xxxx" activeClassName="active">
                     <span className="glyphicon glyphicon-th-list"></span> Your Teams
                   </NavLink>
                 </li>
@@ -51,6 +51,20 @@ class TopBar extends Component {
                     <span className="glyphicon glyphicon-plus"></span> New team
                   </NavLink>
                 </li>
+
+                <li>
+                  <NavLink to="/match-list" activeClassName="active">
+                    <span className="glyphicon glyphicon-user"></span> Match list
+                  </NavLink>
+                </li>
+
+                {isAdmin &&
+                  <li>
+                    <NavLink to="/new-match" activeClassName="active">
+                      <span className="glyphicon glyphicon-user"></span> Add match
+                    </NavLink>
+                  </li>
+                }
 
                 {isAdmin &&
                   <li>

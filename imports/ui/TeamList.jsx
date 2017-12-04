@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Teams from '../../lib/globals';
+import Teams from '../../lib/teams';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router-dom';
 
