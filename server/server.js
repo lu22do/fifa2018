@@ -16,3 +16,27 @@ if (!Countries.find({}).count()) {
     Countries.insert({name: country});
   });
 }
+
+function UpdateScores() {
+  let countries = {};
+  CountryList.forEach((country) => {
+    countries[country] = 0;
+  });
+
+  Matchs.find({}).map(function(match) {
+    if (match.winner != "Draw") {
+      countries[match.winner] += 3;
+    }
+  });
+
+  CountryList.forEach((country) => {
+    //console.log('Score for ' + country + ' = ' + countries[country]);
+    Countries.update({name: country}, {$set: {score: countries[country]}})
+  });
+}
+
+Matchs.find({}).observe({
+  removed: UpdateScores,
+  added: UpdateScores,
+  removed: UpdateScores
+});

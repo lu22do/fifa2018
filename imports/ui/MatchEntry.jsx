@@ -27,11 +27,30 @@ class WinnerSelect extends Component {
   }
 
   render() {
+    /*
+    <select name="winner" value={this.state.winner} onChange={this.handleChange}>
+      <option value={this.props.country1}>{this.props.country1}</option>
+      <option value={this.props.country2}>{this.props.country2}</option>
+    </select>
+    */
+
     return (
-      <select name="winner" value={this.state.winner} onChange={this.handleChange}>
-        <option value={this.props.country1}>{this.props.country1}</option>
-        <option value={this.props.country2}>{this.props.country2}</option>
-      </select>
+      <div>
+        <div>
+          <input type="radio" name="winner" value={this.props.country1}
+            onChange={this.handleChange}
+            checked={this.state.winner === this.props.country1} /> {this.props.country1}
+        </div>
+        <div>
+          <input type="radio" name="winner" value={this.props.country2}
+            onChange={this.handleChange}
+            checked={this.state.winner === this.props.country2}/> {this.props.country2}
+        </div>
+        <div>
+          <input type="radio" name="winner" value="Draw"
+            onChange={this.handleChange} checked={this.state.winner === "Draw"}/> Draw
+        </div>
+      </div>
     );
   }
 }

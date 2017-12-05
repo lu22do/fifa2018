@@ -29,7 +29,6 @@ class MatchNew extends Component {
                     function(err, _id) {
                       if (err) {
                         alert('Unexpected error creating this match! (' + err + ')');
-                        that.props.history.push('/');
                       }
                       else {
                         that.props.history.push('/match-list');

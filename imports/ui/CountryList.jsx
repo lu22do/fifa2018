@@ -50,7 +50,7 @@ class CountryList extends Component {
 }
 
 export default withTracker(props => {
-  const countries = Countries.find({}).fetch();
+  const countries = Countries.find({}, {sort: {score: -1}}).fetch();
   const countryCount = Countries.find({}).count();
 
   return {
