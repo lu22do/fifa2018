@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
-import Countries from '../../lib/countries';
+import Teams from '../../lib/teams';
 import { withTracker } from 'meteor/react-meteor-data';
 
-class CountryList extends Component {
-  renderCountry(country) {
-    const src = '/img/' + country.replace(' ', '_') + '.png';
+class TeamList extends Component {
+  renderTeam(team) {
+    const src = '/img/' + team.replace(' ', '_') + '.png';
 
     return (
       <div>
-        <img width="23" height="15" src={src} /> {country}
+        <img width="23" height="15" src={src} /> {team}
       </div>
     )
   }
 
-  renderCountries() {
-    return this.props.countries.map((country) => (
-      <tr key={country._id}>
-        <td>{this.renderCountry(country.name)}</td>
-        <td>{country.score}</td>
+  renderTeams() {
+    return this.props.teams.map((team) => (
+      <tr key={team._id}>
+        <td>{this.renderTeam(team.name)}</td>
+        <td>{team.score}</td>
       </tr>
     ));
   }
@@ -25,23 +25,23 @@ class CountryList extends Component {
   render() {
     return (
       <div className="container">
-        {this.props.countryCount ? (
+        {this.props.teamCount ? (
           <div>
             <table className="table table-striped">
               <thead>
                 <tr>
-                  <th>Country</th>
+                  <th>Team</th>
                   <th>Score</th>
                 </tr>
               </thead>
               <tbody>
-                {this.renderCountries()}
+                {this.renderTeams()}
               </tbody>
             </table>
           </div>
         ) : (
           <div>
-          No countries found!
+          No teams found!
           </div>
        )}
       </div>
@@ -50,11 +50,11 @@ class CountryList extends Component {
 }
 
 export default withTracker(props => {
-  const countries = Countries.find({}, {sort: {score: -1}}).fetch();
-  const countryCount = Countries.find({}).count();
+  const teams = Teams.find({}, {sort: {score: -1}}).fetch();
+  const teamCount = Teams.find({}).count();
 
   return {
-    countries,
-    countryCount
+    teams,
+    teamCount
   };
-})(CountryList);
+})(TeamList);
