@@ -18,7 +18,7 @@ if (!Teams.find({}).count()) {
 }
 
 function UpdateScores() {
-  let teams = {};
+  let teams = {}; // dictionnary of score per team
   TeamList.forEach((team) => {
     teams[team] = 0;
   });
@@ -32,6 +32,15 @@ function UpdateScores() {
   TeamList.forEach((team) => {
     //console.log('Score for ' + team + ' = ' + teams[team]);
     Teams.update({name: team}, {$set: {score: teams[team]}})
+  });
+
+  Selections.find({}).map(function(selection) {
+    let score = 0;
+    selection.teams.forEach((team) => {
+      score += teams[team];
+    });
+
+    Selections.update({_id: selection._id}, {$set: {score}});
   });
 }
 

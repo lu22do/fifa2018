@@ -24,9 +24,7 @@ The UI react components are the following:
   - Edit match
 
 Todo:
-- calculate score
-- add leaderboard view
-- add edit selection
-- use radio button for winner
+- add leaderboard view (all teams ordered by points)
+- add edit selection?
 - use alphabetical order for selections
 - max 3 selections

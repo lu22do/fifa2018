@@ -33,6 +33,7 @@ class SelectionList extends Component {
         <td>{this.renderTeams(selection.teams)}</td>
         <td>{selection.ownername}</td>
         <td>{selection.created}</td>
+        <td>{selection.score}</td>
         <td>
           {selection.isMySelection &&
             <div>
@@ -57,6 +58,7 @@ class SelectionList extends Component {
                 <th>Teams</th>
                 <th>Owner</th>
                 <th>Creation date</th>
+                <th>Score</th>
                 <th>Action</th>
               </tr>
               </thead>
@@ -88,6 +90,7 @@ export default withTracker(props => {
 
       return {name: selection.name,
               teams: selection.teams,
+              score: selection.score,
               created: moment(selection.created).calendar(),
               id: selection._id,
               ownername: user ? user.username : "unknown",
