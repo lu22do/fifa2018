@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Teams from '../../lib/teams';
+import Selections from '../../lib/selections';
 import { withRouter } from 'react-router-dom'; // makes history available in props
 
 import Groups from '../../lib/groups'
 
-class NewTeam extends Component {
+class SelectionNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,23 +37,23 @@ class NewTeam extends Component {
     });
     let that = this;
 
-    if (!Teams.find({name}).count()) {
-      Teams.insert({ name,
+    if (!Selections.find({name}).count()) {
+      Selections.insert({ name,
                      countries,
                      owner: Meteor.userId() },
         function(err, _id) {
           if (err) {
-            alert('Unexpected error creating this team! (' + err + ')');
+            alert('Unexpected error creating this selection! (' + err + ')');
             that.props.history.push('/');
           }
           else {
-            that.props.history.push('/team-list');
+            that.props.history.push('/selection-list');
           }
         }
       );
     }
     else {
-      alert('This team already exists! Could not create it.')
+      alert('This selection already exists! Could not create it.')
       this.setState({
         name: '',
       });
@@ -85,11 +85,11 @@ class NewTeam extends Component {
   render() {
     return (
       <div className="container">
-        <h3>Create a new team:</h3>
-        <form id="new-team-form" action="action" onSubmit={this.handleSubmit}>
+        <h3>Create a new selection:</h3>
+        <form id="new-selection-form" action="action" onSubmit={this.handleSubmit}>
 
           <div className="form-group">
-            <label>Team name</label>
+            <label>Selection name</label>
             <input className="form-control" type="text" name="name"
               value={this.state.name}
               onChange={this.handleChange} />
@@ -105,4 +105,4 @@ class NewTeam extends Component {
   }
 }
 
-export default withRouter(NewTeam);
+export default withRouter(SelectionNew);

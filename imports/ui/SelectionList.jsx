@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import Teams from '../../lib/teams';
+import Selections from '../../lib/selections';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router-dom';
 
-class TeamList extends Component {
-  deleteTeam(e) {
+class SelectionList extends Component {
+  deleteSelection(e) {
     e.preventDefault();
     let id = e.target.getAttribute('data-id');
-    Teams.remove(id, function(err) {
+    Selections.remove(id, function(err) {
       if (err) {
         alert('Could not delete');
       }
@@ -26,17 +26,17 @@ class TeamList extends Component {
     });
   }
 
-  renderTeams() {
-    return this.props.teams().map((team) => (
-      <tr key={team.id}>
-        <td>{team.name}</td>
-        <td>{this.renderCountries(team.countries)}</td>
-        <td>{team.ownername}</td>
-        <td>{team.created}</td>
+  renderSelections() {
+    return this.props.selections().map((selection) => (
+      <tr key={selection.id}>
+        <td>{selection.name}</td>
+        <td>{this.renderCountries(selection.countries)}</td>
+        <td>{selection.ownername}</td>
+        <td>{selection.created}</td>
         <td>
-          {team.isMyTeam &&
+          {selection.isMySelection &&
             <div>
-              <a onClick={this.deleteTeam} data-id={team.id} href="">Delete</a>
+              <a onClick={this.deleteSelection} data-id={selection.id} href="">Delete</a>
             </div>
           }
         </td>
@@ -47,9 +47,9 @@ class TeamList extends Component {
   render() {
     return (
       <div className="container">
-        {this.props.teamCount ? (
+        {this.props.selectionCount ? (
           <div>
-            <h1>Teams:</h1>
+            <h1>Selections:</h1>
             <table className="table table-striped">
               <thead>
               <tr>
@@ -61,13 +61,13 @@ class TeamList extends Component {
               </tr>
               </thead>
               <tbody>
-                {this.renderTeams()}
+                {this.renderSelections()}
               </tbody>
             </table>
           </div>
         ) : (
           <div>
-          No teams found. Select 'New team' to create one.
+          No selections found. Select 'New selection' to create one.
           </div>
        )}
       </div>
@@ -76,28 +76,28 @@ class TeamList extends Component {
 }
 
 export default withTracker(props => {
-  const teams = function() {
-    return Teams.find({}).map(function(team) {
-      var user = Meteor.users.findOne(team.owner);
+  const selections = function() {
+    return Selections.find({}).map(function(selection) {
+      var user = Meteor.users.findOne(selection.owner);
 
-      var isMyTeam = false;
-      if (Meteor.userId() === team.owner ||
+      var isMySelection = false;
+      if (Meteor.userId() === selection.owner ||
           (Meteor.user() && Meteor.user().username === 'admin')) {
-        isMyTeam = true;
+        isMySelection = true;
       }
 
-      return {name: team.name,
-              countries: team.countries,
-              created: moment(team.created).calendar(),
-              id: team._id,
+      return {name: selection.name,
+              countries: selection.countries,
+              created: moment(selection.created).calendar(),
+              id: selection._id,
               ownername: user ? user.username : "unknown",
-              isMyTeam: isMyTeam};
+              isMySelection: isMySelection};
     });
   };
-  const teamCount = Teams.find({}).count();
+  const selectionCount = Selections.find({}).count();
 
   return {
-    teams,
-    teamCount
+    selections,
+    selectionCount
   };
-})(TeamList);
+})(SelectionList);
