@@ -21,8 +21,8 @@ class MatchEdit extends Component {
 
     let that = this;
 
-    if (this.matchEntry.state.country1 === this.matchEntry.state.country2) {
-      alert('Cannot have twice the same country!');
+    if (this.matchEntry.state.team1 === this.matchEntry.state.team2) {
+      alert('Cannot have twice the same team!');
       return;
     }
 

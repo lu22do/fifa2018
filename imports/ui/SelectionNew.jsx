@@ -11,7 +11,7 @@ class SelectionNew extends Component {
       name: '',
     };
     Groups.forEach((group) => {
-      this.state[group.name] = group.countries[0];
+      this.state[group.name] = group.teams[0];
     });
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,15 +31,15 @@ class SelectionNew extends Component {
     event.preventDefault();
 
     let name = this.state.name;
-    let countries = [];
+    let teams = [];
     Groups.forEach((group) => {
-      countries.push(this.state[group.name]);
+      teams.push(this.state[group.name]);
     });
     let that = this;
 
     if (!Selections.find({name}).count()) {
       Selections.insert({ name,
-                     countries,
+                     teams,
                      owner: Meteor.userId() },
         function(err, _id) {
           if (err) {
@@ -61,9 +61,9 @@ class SelectionNew extends Component {
     return false;
   }
 
-  renderCountries(countries) {
-    return countries.map((country) => (
-      <option value={country}>{country}</option>
+  renderTeams(teams) {
+    return teams.map((team) => (
+      <option value={team}>{team}</option>
     ));
   }
 
@@ -73,9 +73,9 @@ class SelectionNew extends Component {
 
       return (
         <div className="form-group">
-          <label>Select a country for {group.name}</label><br/>
+          <label>Select a team for {group.name}</label><br/>
           <select name={group.name} value={value} onChange={this.handleChange}>
-            {this.renderCountries(group.countries)}
+            {this.renderTeams(group.teams)}
           </select>
         </div>
       )

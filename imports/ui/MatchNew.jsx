@@ -15,16 +15,16 @@ class MatchNew extends Component {
     event.preventDefault();
 
     let that = this;
-    const country1 = this.matchEntry.state.country1;
-    const country2 = this.matchEntry.state.country2;
+    const team1 = this.matchEntry.state.team1;
+    const team2 = this.matchEntry.state.team2;
 
-    if (country1 === country2) {
-      alert('Cannot have twice the same country!');
+    if (team1 === team2) {
+      alert('Cannot have twice the same team!');
       return false;
     }
 
-    if (!Matchs.find({country1: this.matchEntry.state.country1,
-                      country2: this.matchEntry.state.country2}).count()) {
+    if (!Matchs.find({team1: this.matchEntry.state.team1,
+                      team2: this.matchEntry.state.team2}).count()) {
       Matchs.insert(this.matchEntry.state,
                     function(err, _id) {
                       if (err) {

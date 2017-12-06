@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import CountryList from '../../lib/countryList';
+import TeamList from '../../lib/teamList';
 
-// Updates itself with the 2 possible countries
+// Updates itself with the 2 possible teams
 class WinnerSelect extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      winner: this.props.country1
+      winner: this.props.team1
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,22 +29,22 @@ class WinnerSelect extends Component {
   render() {
     /*
     <select name="winner" value={this.state.winner} onChange={this.handleChange}>
-      <option value={this.props.country1}>{this.props.country1}</option>
-      <option value={this.props.country2}>{this.props.country2}</option>
+      <option value={this.props.team1}>{this.props.team1}</option>
+      <option value={this.props.team2}>{this.props.team2}</option>
     </select>
     */
 
     return (
       <div>
         <div>
-          <input type="radio" name="winner" value={this.props.country1}
+          <input type="radio" name="winner" value={this.props.team1}
             onChange={this.handleChange}
-            checked={this.state.winner === this.props.country1} /> {this.props.country1}
+            checked={this.state.winner === this.props.team1} /> {this.props.team1}
         </div>
         <div>
-          <input type="radio" name="winner" value={this.props.country2}
+          <input type="radio" name="winner" value={this.props.team2}
             onChange={this.handleChange}
-            checked={this.state.winner === this.props.country2}/> {this.props.country2}
+            checked={this.state.winner === this.props.team2}/> {this.props.team2}
         </div>
         <div>
           <input type="radio" name="winner" value="Draw"
@@ -61,11 +61,11 @@ export default class MatchEntry extends Component {
 
     this.state = {
       loaded: false,
-      country1: this.props.match ? this.props.match.country1 : CountryList[0],
-      country2: this.props.match ? this.props.match.country2 : CountryList[0],
+      team1: this.props.match ? this.props.match.team1 : TeamList[0],
+      team2: this.props.match ? this.props.match.team2 : TeamList[0],
       date: this.props.match ? this.props.match.date : '',
       score: this.props.match ? this.props.match.score : '',
-      winner: this.props.match ? this.props.match.country1 : CountryList[0],
+      winner: this.props.match ? this.props.match.team1 : TeamList[0],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -80,9 +80,9 @@ export default class MatchEntry extends Component {
     });
   }
 
-  renderCountryList() {
-    return CountryList.map((country) => (
-      <option value={country}>{country}</option>
+  renderTeamList() {
+    return TeamList.map((team) => (
+      <option value={team}>{team}</option>
     ));
   }
 
@@ -95,16 +95,16 @@ export default class MatchEntry extends Component {
         <form action="action" onSubmit={this.props.handleSubmit}>
 
           <div className="form-group">
-            <label>First country</label><br/>
-            <select name="country1" value={this.state.country1} onChange={this.handleChange}>
-              {this.renderCountryList()}
+            <label>First team</label><br/>
+            <select name="team1" value={this.state.team1} onChange={this.handleChange}>
+              {this.renderTeamList()}
             </select>
           </div>
 
           <div className="form-group">
-            <label>Second country</label><br/>
-            <select name="country2" value={this.state.country2} onChange={this.handleChange}>
-              {this.renderCountryList()}
+            <label>Second team</label><br/>
+            <select name="team2" value={this.state.team2} onChange={this.handleChange}>
+              {this.renderTeamList()}
             </select>
           </div>
 
@@ -123,11 +123,11 @@ export default class MatchEntry extends Component {
           </div>
 
           <div className="form-group">
-            <label>Winning country</label><br/>
+            <label>Winning team</label><br/>
             <WinnerSelect ref={(winnerSelect) => {this.winnerSelect = winnerSelect}}
               handleChange={this.handleChange}
-              country1={this.state.country1}
-              country2={this.state.country2} />
+              team1={this.state.team1}
+              team2={this.state.team2} />
           </div>
 
           <input className="btn btn-default" type="submit" value={this.props.submitTitle}/>&nbsp;

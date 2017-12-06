@@ -60,12 +60,12 @@ Matchs.allow({
   }
 });
 
-// Countries
-Meteor.publish("countries", function () {
-  return Countries.find();
+// Teams
+Meteor.publish("teams", function () {
+  return Teams.find();
 });
 
-Countries.allow({
+Teams.allow({
   // nothing
 });
 

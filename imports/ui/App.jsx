@@ -11,7 +11,7 @@ import Register from './Register.jsx';
 import MatchList from './MatchList.jsx';
 import MatchNew from './MatchNew.jsx';
 import MatchEdit from './MatchEdit.jsx';
-import CountryList from './CountryList.jsx';
+import TeamList from './TeamList.jsx';
 
 const Welcome = () => (
   <div className="container">
@@ -21,7 +21,7 @@ const Welcome = () => (
     <br/>
     <h4>Rules</h4>
     <p>
-    -	Everyone picks any 1 country from each group to form a selection<br/>
+    -	Everyone picks any 1 team from each group to form a selection<br/>
     -	You can have similar combination of teams in your selection compared to others but you cannot have the exact set if someone else has it already. So, available selections are first-come-first-serve for a selection.<br/>
     -	Each player can make 3 selections such as LudoSet1, LudoSet2, Ludoset3.<br/>
     -	How you get points:<br/>
@@ -62,7 +62,7 @@ export default class App extends Component {
           <PrivateRoute path='/match-list' component={MatchList}/>
           <PrivateRoute path='/new-match' component={MatchNew}/>
           <PrivateRoute path='/edit-match/:id' component={MatchEdit}/>
-          <PrivateRoute path='/country-list' component={CountryList}/>
+          <PrivateRoute path='/team-list' component={TeamList}/>
         </div>
       </BrowserRouter>
     )

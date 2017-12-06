@@ -14,12 +14,12 @@ class MatchList extends Component {
     });
   }
 
-  renderCountry(country) {
-    const src = '/img/' + country.replace(' ', '_') + '.png';
+  renderTeam(team) {
+    const src = '/img/' + team.replace(' ', '_') + '.png';
 
     return (
       <div>
-        <img width="23" height="15" src={src} /> {country}
+        <img width="23" height="15" src={src} /> {team}
       </div>
     )
   }
@@ -27,11 +27,11 @@ class MatchList extends Component {
   renderMatchs() {
     return this.props.matchs().map((match) => (
       <tr key={match.id}>
-        <td>{this.renderCountry(match.country1)}</td>
-        <td>{this.renderCountry(match.country2)}</td>
+        <td>{this.renderTeam(match.team1)}</td>
+        <td>{this.renderTeam(match.team2)}</td>
         <td>{match.date}</td>
         <td>{match.score}</td>
-        <td>{this.renderCountry(match.winner)}</td>
+        <td>{this.renderTeam(match.winner)}</td>
         <td>{match.created}</td>
         {this.props.admin &&
           <td>
@@ -54,8 +54,8 @@ class MatchList extends Component {
             <table className="table table-striped">
               <thead>
               <tr>
-                <th>First country</th>
-                <th>Second country</th>
+                <th>First team</th>
+                <th>Second team</th>
                 <th>Match date</th>
                 <th>Score</th>
                 <th>Winner</th>

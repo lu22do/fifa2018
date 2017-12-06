@@ -10,28 +10,28 @@ if (!Meteor.users.findOne({username: 'admin'})) {
   }
 }
 
-if (!Countries.find({}).count()) {
-  console.log('Creating Countries db');
-  CountryList.forEach((country) => {
-    Countries.insert({name: country});
+if (!Teams.find({}).count()) {
+  console.log('Creating Teams db');
+  TeamList.forEach((team) => {
+    Teams.insert({name: team});
   });
 }
 
 function UpdateScores() {
-  let countries = {};
-  CountryList.forEach((country) => {
-    countries[country] = 0;
+  let teams = {};
+  TeamList.forEach((team) => {
+    teams[team] = 0;
   });
 
   Matchs.find({}).map(function(match) {
     if (match.winner != "Draw") {
-      countries[match.winner] += 3;
+      teams[match.winner] += 3;
     }
   });
 
-  CountryList.forEach((country) => {
-    //console.log('Score for ' + country + ' = ' + countries[country]);
-    Countries.update({name: country}, {$set: {score: countries[country]}})
+  TeamList.forEach((team) => {
+    //console.log('Score for ' + team + ' = ' + teams[team]);
+    Teams.update({name: team}, {$set: {score: teams[team]}})
   });
 }
 

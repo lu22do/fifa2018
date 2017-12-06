@@ -14,13 +14,13 @@ class SelectionList extends Component {
     });
   }
 
-  renderCountries(countries) {
-    return countries.map((country) => {
-      const src = '/img/' + country.replace(' ', '_') + '.png';
+  renderTeams(teams) {
+    return teams.map((team) => {
+      const src = '/img/' + team.replace(' ', '_') + '.png';
 
       return (
         <div>
-          <img width="23" height="15" src={src} /> {country}
+          <img width="23" height="15" src={src} /> {team}
         </div>
       )
     });
@@ -30,7 +30,7 @@ class SelectionList extends Component {
     return this.props.selections().map((selection) => (
       <tr key={selection.id}>
         <td>{selection.name}</td>
-        <td>{this.renderCountries(selection.countries)}</td>
+        <td>{this.renderTeams(selection.teams)}</td>
         <td>{selection.ownername}</td>
         <td>{selection.created}</td>
         <td>
@@ -54,7 +54,7 @@ class SelectionList extends Component {
               <thead>
               <tr>
                 <th>Name</th>
-                <th>Countries</th>
+                <th>Teams</th>
                 <th>Owner</th>
                 <th>Creation date</th>
                 <th>Action</th>
@@ -87,7 +87,7 @@ export default withTracker(props => {
       }
 
       return {name: selection.name,
-              countries: selection.countries,
+              teams: selection.teams,
               created: moment(selection.created).calendar(),
               id: selection._id,
               ownername: user ? user.username : "unknown",

@@ -7,7 +7,7 @@ import App from '../imports/ui/App.jsx';
 Meteor.subscribe('selections');
 Meteor.subscribe('matchs');
 Meteor.subscribe('userData');
-Meteor.subscribe('countries');
+Meteor.subscribe('teams');
 
 Meteor.startup(() => {
   ReactDOM.render(<App />, document.getElementById('render-target'));
