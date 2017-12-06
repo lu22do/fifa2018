@@ -1,23 +1,23 @@
-// Teams
+// Selections
 // call everytime someone subscribes (or unsubscribes (logout))
-Meteor.publish("teams", function () {
-  return Teams.find();
+Meteor.publish("selections", function () {
+  return Selections.find();
 
-/* ---> to return only team owned by user:
+/* ---> to return only selection owned by user:
   var user = Meteor.users.findOne(this.userId);
 
   if (user) {
 		if (user.username === 'admin') {
-		  return Teams.find();
+		  return Selections.find();
 		}
 		else {
-		  return Teams.find({owner: this.userId});
+		  return Selections.find({owner: this.userId});
 		}
   }
 */
 });
 
-Teams.allow({
+Selections.allow({
   insert: function (userId, doc) {
     // the user must be logged in, and the document must be owned by the user
     return (userId && doc.owner === userId);
@@ -36,7 +36,7 @@ Teams.allow({
   fetch: ['owner']
 });
 
-Teams.deny({
+Selections.deny({
   update: function (userId, doc, fields, modifier) {
     // can't change owners
     return _.contains(fields, 'owner');
