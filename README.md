@@ -27,4 +27,3 @@ The UI react components are the following:
 Todo:
 - add leaderboard view (all teams ordered by points)
 - add edit selection?
-- use alphabetical order for selections

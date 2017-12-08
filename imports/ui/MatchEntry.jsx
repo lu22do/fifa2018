@@ -81,7 +81,7 @@ export default class MatchEntry extends Component {
   }
 
   renderTeamList() {
-    return TeamList.map((team) => (
+    return TeamList.sort().map((team) => (
       <option value={team}>{team}</option>
     ));
   }
