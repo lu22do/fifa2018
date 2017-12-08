@@ -50,7 +50,6 @@ class SelectionList extends Component {
       <div className="container">
         {this.props.selectionCount ? (
           <div>
-            <h1>Selections:</h1>
             <table className="table table-striped">
               <thead>
               <tr>

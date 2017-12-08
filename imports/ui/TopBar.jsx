@@ -53,14 +53,14 @@ class TopBar extends Component {
                 </li>
 
                 <li>
-                  <NavLink to="/match-list" activeClassName="active">
-                    <span className="glyphicon glyphicon-user"></span> Match list
+                  <NavLink to="/team-list" activeClassName="active">
+                    <span className="glyphicon glyphicon-user"></span> Team list
                   </NavLink>
                 </li>
 
                 <li>
-                  <NavLink to="/team-list" activeClassName="active">
-                    <span className="glyphicon glyphicon-user"></span> Team list
+                  <NavLink to="/match-list" activeClassName="active">
+                    <span className="glyphicon glyphicon-user"></span> Match list
                   </NavLink>
                 </li>
 

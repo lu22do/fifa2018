@@ -50,7 +50,6 @@ class MatchList extends Component {
       <div className="container">
         {this.props.matchCount ? (
           <div>
-            <h1>Matchs:</h1>
             <table className="table table-striped">
               <thead>
               <tr>
