@@ -22,9 +22,9 @@ The UI react components are the following:
   - Match list
   - New match
   - Edit match
+- Team scores
 
 Todo:
 - add leaderboard view (all teams ordered by points)
 - add edit selection?
 - use alphabetical order for selections
-- max 3 selections

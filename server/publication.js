@@ -20,7 +20,16 @@ Meteor.publish("selections", function () {
 Selections.allow({
   insert: function (userId, doc) {
     // the user must be logged in, and the document must be owned by the user
-    return (userId && doc.owner === userId);
+    if (!userId || doc.owner !== userId) {
+      return false;
+    }
+
+    // limit selections to 3 per user
+    if (Selections.find({owner: userId}).count() >= 3) {
+      return false;
+    }
+
+    return true;
   },
   update: function (userId, doc, fields, modifier) {
     // can only change your own documents

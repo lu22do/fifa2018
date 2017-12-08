@@ -37,14 +37,20 @@ class SelectionNew extends Component {
     });
     let that = this;
 
+    // limit selections to 3 per user
+    if (Selections.find({owner: Meteor.userId()}).count() >= 3) {
+      alert('Sorry, you cannot create more than 3 selections.')
+      that.props.history.push('/selection-list');
+      return;
+    }
+
     if (!Selections.find({name}).count()) {
       Selections.insert({ name,
-                     teams,
-                     owner: Meteor.userId() },
+                          teams,
+                          owner: Meteor.userId() },
         function(err, _id) {
           if (err) {
             alert('Unexpected error creating this selection! (' + err + ')');
-            that.props.history.push('/');
           }
           else {
             that.props.history.push('/selection-list');
@@ -58,7 +64,7 @@ class SelectionNew extends Component {
         name: '',
       });
     }
-    return false;
+    return;
   }
 
   renderTeams(teams) {

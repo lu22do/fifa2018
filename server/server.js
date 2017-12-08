@@ -10,6 +10,7 @@ if (!Meteor.users.findOne({username: 'admin'})) {
   }
 }
 
+// Create the Teams db if it does not exist already
 if (!Teams.find({}).count()) {
   console.log('Creating Teams db');
   TeamList.forEach((team) => {
@@ -17,6 +18,7 @@ if (!Teams.find({}).count()) {
   });
 }
 
+// Update scores (teams and selection) if there is any change in the Matchs db
 function UpdateScores() {
   let teams = {}; // dictionnary of score per team
   TeamList.forEach((team) => {
