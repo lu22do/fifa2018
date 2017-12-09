@@ -36,6 +36,18 @@ function UpdateScores() {
     if (match.winner != "Draw") {
       teams[match.winner] += 3;
     }
+    else {
+      teams[match.team1] += 1;
+      teams[match.team2] += 1;
+    }
+
+    let goalMultiplier = 0.3;
+    if (match.phase === 'elimination') {
+      goalMultiplier = 0.5;
+    }
+
+    teams[match.team1] += match.team1goals * goalMultiplier;
+    teams[match.team2] += match.team2goals * goalMultiplier;
   });
 
   TeamList.forEach((team) => {
@@ -46,9 +58,11 @@ function UpdateScores() {
   Selections.find({}).map(function(selection) {
     let score = 0;
     selection.teams.forEach((team) => {
+      //console.log('Score for ' + team + ' = ' + teams[team]);
       score += teams[team];
     });
 
+    console.log('Score for ' + selection.name + ' = ' + score);
     Selections.update({_id: selection._id}, {$set: {score}});
   });
 }
@@ -56,5 +70,10 @@ function UpdateScores() {
 Matchs.find({}).observe({
   removed: UpdateScores,
   added: UpdateScores,
-  removed: UpdateScores
+  changed: UpdateScores
+});
+
+Selections.find({}).observe({
+  added: UpdateScores,
+  changed: UpdateScores
 });

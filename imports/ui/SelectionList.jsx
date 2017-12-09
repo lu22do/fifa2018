@@ -25,9 +25,19 @@ class SelectionList extends Component {
         )
       }
       else {
+        let score = 0;
+        this.props.teams.some((_team) => {
+          if (_team.name === team) {
+            score = _team.score;
+            return true;
+          }
+          else {
+            return false;
+          }
+        });
         return (
           <div>
-            <img width="23" height="15" src={src} /> {team}
+            <img width="23" height="15" src={src} /> {team} ({score})
           </div>
         )
       }
@@ -99,7 +109,7 @@ export default withTracker(props => {
       query = {owner: props.match.params.id};
     }
 
-    return Selections.find(query).map(selection => {
+    return Selections.find(query, {sort:{score: -1}}).map(selection => {
       let user = Meteor.users.findOne(selection.owner);
       let isMySelection = false;
 
@@ -118,10 +128,12 @@ export default withTracker(props => {
     });
   };
   const selectionCount = Selections.find({}).count();
+  const teams = Teams.find({}).fetch();
 
   return {
     selections,
     selectionCount,
+    teams,
     compactLayout: props.match.params.id? false : true
   };
 })(SelectionList);

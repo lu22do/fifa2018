@@ -30,7 +30,8 @@ class MatchList extends Component {
         <td>{this.renderTeam(match.team1)}</td>
         <td>{this.renderTeam(match.team2)}</td>
         <td>{match.date}</td>
-        <td>{match.score}</td>
+        <td>{match.phase}</td>
+        <td>{match.team1goals}-{match.team2goals}</td>
         <td>{this.renderTeam(match.winner)}</td>
         <td>{match.created}</td>
         {this.props.admin &&
@@ -56,6 +57,7 @@ class MatchList extends Component {
                 <th>First team</th>
                 <th>Second team</th>
                 <th>Match date</th>
+                <th>Phase</th>
                 <th>Score</th>
                 <th>Winner</th>
                 <th>Creation date</th>

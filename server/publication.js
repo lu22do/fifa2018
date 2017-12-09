@@ -29,6 +29,11 @@ Selections.allow({
       return false;
     }
 
+    // cannot add selection once game is started
+    if (GameState.find({}).fetch()[0].state !== 'preparing') {
+      return false;
+    }
+
     return true;
   },
   update: function (userId, doc, fields, modifier) {
