@@ -22,6 +22,7 @@ class TopBar extends Component {
     const currentUser = this.props.currentUser;
     const isAdmin = currentUser && currentUser.username === 'admin';
     const isGamePreparing = this.props.gameState ? this.props.gameState.state === 'preparing' : false;
+    const yourSelectionLink = currentUser ? "/selection-list/" + currentUser._id : '';
 
     return (
       <nav className="navbar navbar-default">
@@ -42,8 +43,14 @@ class TopBar extends Component {
               <ul className="nav navbar-nav">
 
                 <li>
-                  <NavLink to="/selection-list" activeClassName="active">
-                    <span className="glyphicon glyphicon-th-list"></span> Selection list
+                  <NavLink to="/selection-list" exact activeClassName="active">
+                    <span className="glyphicon glyphicon-list-alt"></span> All selections
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink to={yourSelectionLink} activeClassName="active">
+                    <span className="glyphicon glyphicon-list-alt"></span> Your selections
                   </NavLink>
                 </li>
 
@@ -57,13 +64,13 @@ class TopBar extends Component {
 
                 <li>
                   <NavLink to="/team-list" activeClassName="active">
-                    <span className="glyphicon glyphicon-user"></span> Team list
+                    <span className="glyphicon glyphicon-list"></span> Team list
                   </NavLink>
                 </li>
 
                 <li>
                   <NavLink to="/match-list" activeClassName="active">
-                    <span className="glyphicon glyphicon-th-list"></span> Match list
+                    <span className="glyphicon glyphicon-list"></span> Match list
                   </NavLink>
                 </li>
 

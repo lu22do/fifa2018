@@ -57,7 +57,8 @@ export default class App extends Component {
           <PrivateRoute exact path='/' component={Welcome}/>
           <Route path="/login" component={Login}/>
           <Route path="/register" component={Register}/>
-          <PrivateRoute path='/selection-list' component={SelectionList}/>
+          <PrivateRoute path='/selection-list' exact component={SelectionList}/>
+          <PrivateRoute path='/selection-list/:id' component={SelectionList}/>
           <PrivateRoute path='/new-selection' component={SelectionNew}/>
           <PrivateRoute path='/users' component={Users}/>
           <PrivateRoute path='/match-list' component={MatchList}/>

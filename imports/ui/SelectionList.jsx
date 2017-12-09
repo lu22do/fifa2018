@@ -18,12 +18,28 @@ class SelectionList extends Component {
     return teams.map((team) => {
       const src = '/img/' + team.replace(' ', '_') + '.png';
 
-      return (
-        <div>
-          <img width="23" height="15" src={src} /> {team}
-        </div>
-      )
+      if (this.props.compactLayout) {
+        return (
+          <img width="23" height="15" src={src} style={{marginRight: 8}}
+            data-toggle="tooltip" data-placement="top" title={team} />
+        )
+      }
+      else {
+        return (
+          <div>
+            <img width="23" height="15" src={src} /> {team}
+          </div>
+        )
+      }
     });
+  }
+
+  componentDidMount() {
+    $('[data-toggle="tooltip"]').tooltip();
+  }
+
+  componentDidUpdate() {
+    $('[data-toggle="tooltip"]').tooltip();
   }
 
   renderSelections() {
@@ -78,10 +94,15 @@ class SelectionList extends Component {
 
 export default withTracker(props => {
   const selections = function() {
-    return Selections.find({}).map(function(selection) {
-      var user = Meteor.users.findOne(selection.owner);
+    let query = {};
+    if (props.match.params.id) {
+      query = {owner: props.match.params.id};
+    }
 
-      var isMySelection = false;
+    return Selections.find(query).map(selection => {
+      let user = Meteor.users.findOne(selection.owner);
+      let isMySelection = false;
+
       if (Meteor.userId() === selection.owner ||
           (Meteor.user() && Meteor.user().username === 'admin')) {
         isMySelection = true;
@@ -100,6 +121,7 @@ export default withTracker(props => {
 
   return {
     selections,
-    selectionCount
+    selectionCount,
+    compactLayout: props.match.params.id? false : true
   };
 })(SelectionList);
