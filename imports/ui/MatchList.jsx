@@ -25,7 +25,7 @@ class MatchList extends Component {
   }
 
   renderMatchs() {
-    return this.props.matchs().map((match) => (
+    return this.props.matchs.map((match) => (
       <tr key={match.id}>
         <td>{this.renderTeam(match.team1)}</td>
         <td>{this.renderTeam(match.team2)}</td>
@@ -82,13 +82,10 @@ class MatchList extends Component {
 }
 
 export default withTracker(props => {
-  const matchs = function() {
-    return Matchs.find({}).map(function(match) {
-      match.created = moment(match.created).calendar();
-
-      return match;
-    });
-  };
+  const matchs = Matchs.find({}).map(function(match) {
+    match.created = moment(match.created).calendar();
+    return match;
+  });
   const matchCount = Matchs.find({}).count();
 
   return {

@@ -24,8 +24,7 @@ The UI react components are the following:
   - Edit match
 - Team scores
 
-Todo:
-- fix tracking of doc change
 
-Other ideas:
+Improvement ideas:
 - support email notifications
+- use date component for selection of match date

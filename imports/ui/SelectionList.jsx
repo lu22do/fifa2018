@@ -103,30 +103,28 @@ class SelectionList extends Component {
 }
 
 export default withTracker(props => {
-  const selections = function() {
-    let query = {};
-    if (props.match.params.id) {
-      query = {owner: props.match.params.id};
+  let query = {};
+  if (props.match.params.id) {
+    query = {owner: props.match.params.id};
+  }
+
+  const selections = Selections.find(query, {sort:{score: -1}}).map(selection => {
+    let user = Meteor.users.findOne(selection.owner);
+    let isMySelection = false;
+
+    if (Meteor.userId() === selection.owner ||
+        (Meteor.user() && Meteor.user().username === 'admin')) {
+      isMySelection = true;
     }
 
-    return Selections.find(query, {sort:{score: -1}}).map(selection => {
-      let user = Meteor.users.findOne(selection.owner);
-      let isMySelection = false;
-
-      if (Meteor.userId() === selection.owner ||
-          (Meteor.user() && Meteor.user().username === 'admin')) {
-        isMySelection = true;
-      }
-
-      return {name: selection.name,
-              teams: selection.teams,
-              score: selection.score,
-              created: moment(selection.created).calendar(),
-              id: selection._id,
-              ownername: user ? user.username : "unknown",
-              isMySelection: isMySelection};
-    });
-  };
+    return {name: selection.name,
+            teams: selection.teams,
+            score: selection.score,
+            created: moment(selection.created).calendar(),
+            id: selection._id,
+            ownername: user ? user.username : "unknown",
+            isMySelection: isMySelection};
+  });
   const selectionCount = Selections.find({}).count();
   const teams = Teams.find({}).fetch();
 
