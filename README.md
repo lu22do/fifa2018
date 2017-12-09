@@ -25,5 +25,9 @@ The UI react components are the following:
 - Team scores
 
 Todo:
-- add leaderboard view (all teams ordered by points)
-- add edit selection?
+- add compact leaderboard view (all teams ordered by points)
+- final point counting
+- fix tracking of doc change
+
+Other ideas:
+- support email notifications

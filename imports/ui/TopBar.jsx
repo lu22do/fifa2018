@@ -21,6 +21,7 @@ class TopBar extends Component {
   render() {
     const currentUser = this.props.currentUser;
     const isAdmin = currentUser && currentUser.username === 'admin';
+    const isGamePreparing = this.props.gameState ? this.props.gameState.state === 'preparing' : false;
 
     return (
       <nav className="navbar navbar-default">
@@ -46,11 +47,13 @@ class TopBar extends Component {
                   </NavLink>
                 </li>
 
-                <li>
-                  <NavLink to="/new-selection" activeClassName="active">
-                    <span className="glyphicon glyphicon-plus"></span> New selection
-                  </NavLink>
-                </li>
+                {isGamePreparing &&
+                  <li>
+                    <NavLink to="/new-selection" activeClassName="active">
+                      <span className="glyphicon glyphicon-plus"></span> New selection
+                    </NavLink>
+                  </li>
+                }
 
                 <li>
                   <NavLink to="/team-list" activeClassName="active">
@@ -60,14 +63,14 @@ class TopBar extends Component {
 
                 <li>
                   <NavLink to="/match-list" activeClassName="active">
-                    <span className="glyphicon glyphicon-user"></span> Match list
+                    <span className="glyphicon glyphicon-th-list"></span> Match list
                   </NavLink>
                 </li>
 
                 {isAdmin &&
                   <li>
                     <NavLink to="/new-match" activeClassName="active">
-                      <span className="glyphicon glyphicon-user"></span> Add match
+                      <span className="glyphicon glyphicon-plus"></span> Add match
                     </NavLink>
                   </li>
                 }
@@ -76,6 +79,14 @@ class TopBar extends Component {
                   <li>
                     <NavLink to="/users" activeClassName="active">
                       <span className="glyphicon glyphicon-user"></span> Users
+                    </NavLink>
+                  </li>
+                }
+
+                {isAdmin &&
+                  <li>
+                    <NavLink to="/game-state" activeClassName="active">
+                      <span className="glyphicon glyphicon-bell"></span> Game State
                     </NavLink>
                   </li>
                 }
@@ -97,7 +108,10 @@ class TopBar extends Component {
 }
 
 export default withRouter(withTracker(props => {
+  const gameState = GameState.find({}).fetch()[0];
+
   return {
-    currentUser: Meteor.user()
+    currentUser: Meteor.user(),
+    gameState
   };
 })(TopBar));

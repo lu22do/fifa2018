@@ -42,7 +42,7 @@ Selections.allow({
     return doc.owner === userId ||
            (currentUser && currentUser.username === 'admin');
   },
-  fetch: ['owner']
+  fetch: ['owner']  // fetch only owner from the db to do the above checks
 });
 
 Selections.deny({
@@ -74,8 +74,15 @@ Meteor.publish("teams", function () {
   return Teams.find();
 });
 
-Teams.allow({
-  // nothing
+// GameState
+Meteor.publish("game-state", function () {
+  return GameState.find();
+});
+
+GameState.allow({
+  update: function (userId, doc, fields, modifier) {
+    return Meteor.user().username === 'admin';
+  }
 });
 
 // user data

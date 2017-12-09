@@ -10,6 +10,13 @@ if (!Meteor.users.findOne({username: 'admin'})) {
   }
 }
 
+// Create the GameState db if it does not exist already
+if (!GameState.find({}).count()) {
+  console.log('Creating GameState db');
+  GameState.insert({state: 'preparing'});
+}
+
+
 // Create the Teams db if it does not exist already
 if (!Teams.find({}).count()) {
   console.log('Creating Teams db');

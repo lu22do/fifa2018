@@ -12,6 +12,7 @@ import MatchList from './MatchList.jsx';
 import MatchNew from './MatchNew.jsx';
 import MatchEdit from './MatchEdit.jsx';
 import TeamList from './TeamList.jsx';
+import GameStateEdit from './GameStateEdit.jsx';
 
 const Welcome = () => (
   <div className="container">
@@ -51,7 +52,7 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <TopBar location={this.location}/>
+          <TopBar/>
 
           <PrivateRoute exact path='/' component={Welcome}/>
           <Route path="/login" component={Login}/>
@@ -63,6 +64,7 @@ export default class App extends Component {
           <PrivateRoute path='/new-match' component={MatchNew}/>
           <PrivateRoute path='/edit-match/:id' component={MatchEdit}/>
           <PrivateRoute path='/team-list' component={TeamList}/>
+          <PrivateRoute path='/game-state' component={GameStateEdit}/>
         </div>
       </BrowserRouter>
     )
