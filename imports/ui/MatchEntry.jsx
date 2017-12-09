@@ -21,6 +21,12 @@ class WinnerSelect extends Component {
     const value = event.target.value;
     const name = event.target.name;
 
+    if (name == 'team1goals' || name == 'team2goals') {
+      if (!/^\d+$/.test(value) && value != '') {
+        return;
+      }
+    }
+
     this.setState({
       [name]: value
     });
