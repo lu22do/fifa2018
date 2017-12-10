@@ -12,16 +12,7 @@ class MatchNew extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-
     let that = this;
-
-    if (this.matchEntry.state.team1 === this.matchEntry.state.team2) {
-      alert('Cannot have twice the same team!');
-      return false;
-    }
-
-    this.matchEntry.state.date = this.matchEntry.state.date.toDate();
 
     if (!Matchs.find({team1: this.matchEntry.state.team1,
                       team2: this.matchEntry.state.team2}).count()) {
@@ -38,7 +29,6 @@ class MatchNew extends Component {
     else {
       alert('This match already exists! Could not create it.')
     }
-    return false;
   }
 
   render() {

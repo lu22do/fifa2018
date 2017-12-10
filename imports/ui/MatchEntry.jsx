@@ -11,7 +11,7 @@ class WinnerSelect extends Component {
     super(props);
 
     this.state = {
-      winner: this.props.team1,
+      winner: this.props.winner,
       team1goals: this.props.team1goals,
       team2goals: this.props.team2goals,
     };
@@ -89,16 +89,42 @@ export default class MatchEntry extends Component {
       loaded: false,
       team1: this.props.match ? this.props.match.team1 : TeamList[0],
       team2: this.props.match ? this.props.match.team2 : TeamList[0],
-      date: this.props.match ? this.props.match.date : '',
+      date: this.props.match ? 
+            (this.props.match.date ? moment(this.props.match.date) : '') : '',
 //      score: this.props.match ? this.props.match.score : '',
-      phase: this.props.phase ? this.props.match.phase : 'group',
-      winner: this.props.phase ? this.props.match.winner : TeamList[0],
+      phase: this.props.match ? this.props.match.phase : 'group',
+      winner: this.props.match ? this.props.match.winner : TeamList[0],
       team1goals: this.props.match ? this.props.match.team1goals : 0,
       team2goals: this.props.match ? this.props.match.team2goals : 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    let that = this;
+
+    if (this.state.team1 === this.state.team2) {
+      alert('Cannot have twice the same team!');
+      return;
+    }
+
+    if (this.state.winner !== this.state.team1 &&
+        this.state.winner !== this.state.team2 &&
+        this.state.winner !== 'Draw') {
+      alert('Winner needs to be set!');
+      return;
+    }
+
+    if (this.state.date) {
+      this.state.date = this.state.date.toDate();
+    }
+
+    this.props.handleSubmit(event); // pass to parent
   }
 
   handleDateChange(moment) {
@@ -128,7 +154,7 @@ export default class MatchEntry extends Component {
     return (
       <div className="container">
         <h3>{this.props.title}</h3>
-        <form action="action" onSubmit={this.props.handleSubmit}>
+        <form action="action" onSubmit={this.handleSubmit}>
 
           <div className="form-group">
             <label>First team</label><br/>
@@ -187,7 +213,8 @@ export default class MatchEntry extends Component {
               team1={this.state.team1}
               team2={this.state.team2}
               team1goals={this.state.team1goals}
-              team2goals={this.state.team2goals} />
+              team2goals={this.state.team2goals}
+              winner={this.state.winner} />
           </div>
 
           <input className="btn btn-default" type="submit" value={this.props.submitTitle}/>&nbsp;

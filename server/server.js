@@ -63,6 +63,8 @@ function UpdateScores() {
       score += teams[team];
     });
 
+    score = parseFloat(Math.round(score * 100) / 100).toFixed(2);
+
     console.log('Score for ' + selection.name + ' = ' + score);
     Selections.update({_id: selection._id}, {$set: {score}});
   });

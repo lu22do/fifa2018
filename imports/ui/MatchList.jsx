@@ -84,7 +84,9 @@ class MatchList extends Component {
 export default withTracker(props => {
   const matchs = Matchs.find({}).map(function(match) {
     match.created = moment(match.created).calendar();
-    match.date = moment(match.date).calendar();
+    if (match.date) {
+      match.date = moment(match.date).calendar();
+    }
     return match;
   });
   const matchCount = Matchs.find({}).count();

@@ -17,16 +17,7 @@ class MatchEdit extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-
     let that = this;
-
-    if (this.matchEntry.state.team1 === this.matchEntry.state.team2) {
-      alert('Cannot have twice the same team!');
-      return;
-    }
-
-    this.matchEntry.state.date = this.matchEntry.state.date.toDate();
 
     Matchs.update(this.props.match._id,
                   {$set: this.matchEntry.state},
