@@ -51,8 +51,9 @@ function UpdateScores() {
   });
 
   TeamList.forEach((team) => {
+    let score = parseFloat(Math.round(teams[team] * 100) / 100).toFixed(2);
     //console.log('Score for ' + team + ' = ' + teams[team]);
-    Teams.update({name: team}, {$set: {score: teams[team]}})
+    Teams.update({name: team}, {$set: {score}})
   });
 
   Selections.find({}).map(function(selection) {

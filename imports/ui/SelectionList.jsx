@@ -53,7 +53,7 @@ class SelectionList extends Component {
   }
 
   renderSelections() {
-    return this.props.selections().map((selection) => (
+    return this.props.selections.map((selection) => (
       <tr key={selection.id}>
         <td>{selection.name}</td>
         <td>{this.renderTeams(selection.teams)}</td>

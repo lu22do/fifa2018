@@ -3,6 +3,8 @@ import { Link, withRouter } from 'react-router-dom';
 
 import TeamList from '../../lib/teamList';
 
+import DatePicker from 'react-datetime';
+
 // Updates itself with the 2 possible teams
 class WinnerSelect extends Component {
   constructor(props) {
@@ -96,6 +98,13 @@ export default class MatchEntry extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+  }
+
+  handleDateChange(moment) {
+    this.setState({
+      date: moment
+    });
   }
 
   handleChange(event) {
@@ -141,6 +150,9 @@ export default class MatchEntry extends Component {
               value={this.state.date}
               onChange={this.handleChange} />
           </div>
+
+          <DatePicker timeFormat={false} name="date" value={this.state.date}
+            onChange={this.handleDateChange} />
 
           <div className="form-group">
             <label>Phase</label>

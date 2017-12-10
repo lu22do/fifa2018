@@ -26,6 +26,8 @@ class MatchEdit extends Component {
       return;
     }
 
+    this.matchEntry.state.date = this.matchEntry.state.date.toDate();
+
     Matchs.update(this.props.match._id,
                   {$set: this.matchEntry.state},
                   function(err, _id) {

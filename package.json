@@ -8,8 +8,10 @@
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "bcrypt": "^1.0.3",
+    "moment": "^2.19.3",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
+    "react-datetime": "^2.11.1",
     "react-dom": "^16.1.1",
     "react-router-dom": "^4.2.2"
   },
