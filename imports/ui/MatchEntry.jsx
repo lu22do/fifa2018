@@ -146,13 +146,10 @@ export default class MatchEntry extends Component {
 
           <div className="form-group">
             <label>Date</label>
-            <input className="form-control" type="text" name="date"
-              value={this.state.date}
-              onChange={this.handleChange} />
+            <DatePicker timeFormat={false} name="date" value={this.state.date}
+              onChange={this.handleDateChange} closeOnSelect={true}
+              inputProps={{ placeholder: 'MM/DD/YYYY' }}/>
           </div>
-
-          <DatePicker timeFormat={false} name="date" value={this.state.date}
-            onChange={this.handleDateChange} />
 
           <div className="form-group">
             <label>Phase</label>
