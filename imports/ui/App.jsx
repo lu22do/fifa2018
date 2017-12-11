@@ -29,6 +29,7 @@ const Welcome = () => (
     &nbsp;&nbsp;o	Your teams will keep gaining points for you as long as they keep playing (not eliminated). Wins, draws and goals get you points.<br/>
     &nbsp;&nbsp;o	Each win gains your selection 3 points, each draw 1 point, each goal scored gains additional Y points (Y = 0.3 during group stage, 0.5 during elimination phase)<br/>
     &nbsp;&nbsp;o	Penalty kicks are not accounted. Only the winner (3 points) and goals during regulation time from each side are counted for points<br/>
+    - After the competition kicks off, it is not possible to add/delete selections.<br/>
     -	Player with most total points win. In case of a tie, all those folks win.<br/>
     </p>
   </div>
