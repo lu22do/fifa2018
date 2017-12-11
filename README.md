@@ -24,5 +24,8 @@ The UI react components are the following:
   - Edit match
 - Team scores
 
+Todos:
+- prevent deletion of selections after competition has started 
+
 Improvement ideas:
 - support email notifications
