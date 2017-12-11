@@ -29,3 +29,4 @@ Todos:
 
 Improvement ideas:
 - support email notifications
+- add support for reset password
