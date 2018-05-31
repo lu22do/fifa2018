@@ -79,7 +79,7 @@ class SelectionNew extends Component {
 
       return (
         <div className="form-group">
-          <label>Select a team for {group.name}</label><br/>
+          <label>Select a team for "{group.name}"</label><br/>
           <select name={group.name} value={value} onChange={this.handleChange}>
             {this.renderTeams(group.teams)}
           </select>
