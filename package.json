@@ -6,13 +6,15 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.49",
     "babel-runtime": "^6.26.0",
     "bcrypt": "^1.0.3",
+    "meteor-node-stubs": "^0.4.1",
     "moment": "^2.19.3",
     "prop-types": "^15.6.0",
-    "react": "^16.1.1",
-    "react-datetime": "^2.11.1",
-    "react-dom": "^16.1.1",
+    "react": "^16.4.0",
+    "react-datetime": "^2.14.0",
+    "react-dom": "^16.4.0",
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {},
