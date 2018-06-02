@@ -55,6 +55,7 @@ class SelectionList extends Component {
   renderSelections() {
     return this.props.selections.map((selection) => (
       <tr key={selection.id}>
+        <td>{selection.rank}</td>
         <td>{selection.name}</td>
         <td>{this.renderTeams(selection.teams)}</td>
         <td>{selection.ownername}</td>
@@ -79,6 +80,7 @@ class SelectionList extends Component {
             <table className="table table-striped">
               <thead>
               <tr>
+                <th>Ranking</th>
                 <th>Name</th>
                 <th>Teams</th>
                 <th>Owner</th>
@@ -108,7 +110,11 @@ export default withTracker(props => {
     query = {owner: props.match.params.id};
   }
 
-  const selections = Selections.find(query, {sort:{score: -1}}).map(selection => {
+  let counter = 1;
+  let ranking = 1;
+  let prevScore = -1;
+
+  const selections = Selections.find(query, {sort:{score: -1, created: 1}}).map(selection => {
     let user = Meteor.users.findOne(selection.owner);
     let isMySelection = false;
 
@@ -116,8 +122,14 @@ export default withTracker(props => {
         (Meteor.user() && Meteor.user().username === 'admin')) {
       isMySelection = true;
     }
+    if (selection.score != prevScore) {
+      counter = ranking;
+    }
+    prevScore = selection.score;
+    ranking++;
 
-    return {name: selection.name,
+    return {rank: counter,
+            name: selection.name,
             teams: selection.teams,
             score: selection.score,
             created: moment(selection.created).calendar(),
