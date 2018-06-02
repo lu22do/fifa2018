@@ -22,7 +22,7 @@ const Welcome = () => (
     <br/>
     <h4>Rules</h4>
     <p>
-    -	Pick 1 team from each group by clicking on  <Link to="/new-selection">New Selections</Link> <b>". Groups were created following the FIFA ranking before the WC2018<br/>
+    -	Pick 1 team from each group by clicking on <Link to="/new-selection">New Selection</Link> . Groups were created following the FIFA ranking before the WC2018<br/>
     -	You can have similar combination of teams in your selection compared to others but you cannot have the exact set if someone else has it already. So, available selections are first-come-first-serve for a selection.<br/>
     -	Each player can make 3 selections such as LudoSet1, LudoSet2, Ludoset3.<br/>
     -	How you get points:<br/>
