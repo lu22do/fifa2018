@@ -93,6 +93,6 @@ Accounts.emailTemplates.verifyEmail = {
       let emailAddress   = user.emails[0].address,
         urlWithoutHash = url.replace( '#/', '' );
 
-      return `Hello ${user.username}!\n\n Please verify your e-mail address (${emailAddress}) by following this link: \n\n${urlWithoutHash}\n\n Thanks and happy competition!`;
+      return `Hello ${user.username}!\n\n Please verify your e-mail address (${emailAddress}) by clicking on this link (or copy-pasting it in your browser): \n\n${urlWithoutHash}\n\n Thanks and happy competition!`;
     }
 };
