@@ -12,13 +12,24 @@ class Users extends Component {
     });
   }
 
+  sendTestEmail(e) {
+    e.preventDefault();
+    Meteor.call( 'sendTestEmail', (error) => {
+      if (error) {
+        alert('sendTestEmail error (' + err + ')');
+      }
+    });
+  }
+
   renderUsers() {
     return this.props.users.map((user) => (
       <tr key={user._id}>
         <td>{user.username}</td>
+        <td>{user.emails && user.emails[0].address}</td>
+        <td>{user.emails && user.emails[0].verified ? 'Yes' : 'No'}</td>
         <td>
           {user.username != 'admin' && Meteor.user().username == 'admin' &&
-            <a onClick={this.handleDelete.bind(this)} data-id={user._id} href="">Delete</a>
+            <a onClick={this.handleDelete.bind(this)} data-id={user._id} href="">Delete Account</a>
           }
         </td>
       </tr>
@@ -32,7 +43,9 @@ class Users extends Component {
           <table className="table table-striped">
             <thead>
               <tr>
-                <th>Name</th>
+                <th>User name</th>
+                <th>Email address</th>
+                <th>Email verified</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -41,6 +54,10 @@ class Users extends Component {
             </tbody>
           </table>
         </div>
+        <br/><br/>
+        <div>
+          <a className="btn btn-default" onClick={this.sendTestEmail} href="">Send test email</a>
+        </div>
       </div>
     )
   }
@@ -48,6 +65,6 @@ class Users extends Component {
 
 export default withTracker(props => {
   return {
-    users: Meteor.users.find().fetch()
+    users: Meteor.users.find({username: {$not: {$eq: 'admin'}}}).fetch()
   };
 })(Users);

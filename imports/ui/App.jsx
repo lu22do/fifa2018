@@ -1,39 +1,20 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
-import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 import TopBar from './TopBar.jsx';
+import Welcome from './Welcome.jsx';
 import SelectionList from './SelectionList.jsx';
 import SelectionNew from './SelectionNew.jsx';
 import Users from './Users.jsx';
 import Login from './Login.jsx';
+import VerifyEmail from './VerifyEmail.jsx';
 import Register from './Register.jsx';
 import MatchList from './MatchList.jsx';
 import MatchNew from './MatchNew.jsx';
 import MatchEdit from './MatchEdit.jsx';
 import TeamList from './TeamList.jsx';
 import GameStateEdit from './GameStateEdit.jsx';
-
-const Welcome = () => (
-  <div className="container">
-    <h3>Welcome to the 2018 FIFA Game made by the OpenTV-forevers!</h3>
-    <br/>
-    <p>WARNING: This is work in progress and should be used only for testing!</p>
-    <br/>
-    <h4>Rules</h4>
-    <p>
-    -	Pick 1 team from each group by clicking on <Link to="/new-selection">New Selection</Link> . Groups were created following the FIFA ranking before the WC2018<br/>
-    -	You can have similar combination of teams in your selection compared to others but you cannot have the exact set if someone else has it already. So, available selections are first-come-first-serve for a selection.<br/>
-    -	Each player can make 3 selections such as LudoSet1, LudoSet2, Ludoset3.<br/>
-    -	How you get points:<br/>
-    &nbsp;&nbsp;o	Your teams will keep gaining points for you as long as they keep playing (not eliminated). Wins, draws and goals get you points.<br/>
-    &nbsp;&nbsp;o	Each win gains your selection 3 points, each draw 1 point, each goal scored gains additional Y points (Y = 0.3 during group stage, 0.5 during elimination phase)<br/>
-    &nbsp;&nbsp;o	Penalty kicks are not accounted. Only the winner (3 points) and goals during regulation time from each side are counted for points<br/>
-    - After the competition kicks off, it is not possible to create/delete/replace a selection. Your selections can be done until June 13th, just before the opening game of FIFA 2018 <br/>
-    -	The player with most total points win. In case of a tie, all those folks win.<br/>
-    </p>
-  </div>
-)
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
@@ -58,6 +39,7 @@ export default class App extends Component {
           <PrivateRoute exact path='/' component={Welcome}/>
           <Route path="/login" component={Login}/>
           <Route path="/register" component={Register}/>
+          <Route path="/verify-email/:token" component={VerifyEmail}/>
           <PrivateRoute path='/selection-list' exact component={SelectionList}/>
           <PrivateRoute path='/selection-list/:id' component={SelectionList}/>
           <PrivateRoute path='/new-selection' component={SelectionNew}/>

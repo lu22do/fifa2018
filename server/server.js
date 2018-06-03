@@ -80,3 +80,18 @@ Selections.find({}).observe({
   added: UpdateScores,
   changed: UpdateScores
 });
+
+Accounts.emailTemplates.siteName = 'FIFA2018 OTV';
+Accounts.emailTemplates.from = 'FIFA2018 OTV <no-reply@fifa2018otv.com>';
+
+Accounts.emailTemplates.verifyEmail = {
+    subject() {
+      return 'Activate your account now!';
+    },
+    text(user, url) {
+      let emailAddress   = user.emails[0].address,
+        urlWithoutHash = url.replace( '#/', '' );
+
+      return `Hello ${user.username}!\n\n Please verify your e-mail address (${emailAddress}) by following this link: \n\n${urlWithoutHash}\n\n Thanks and happy competition!`;
+    }
+};

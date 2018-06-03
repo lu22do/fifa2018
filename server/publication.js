@@ -92,8 +92,19 @@ GameState.allow({
 
 // user data
 Meteor.publish("userData", function () {
-  return Meteor.users.find({},
-                           {fields: {'username': 1}});
+  if (this.userId) {
+    if (Meteor.user().username === 'admin') {
+        return Meteor.users.find({},
+                                 {fields: {'username': 1,
+                                           'emails': 1}});
+    }
+    else {
+      return Meteor.users.find({},
+                               {fields: {'username': 1}});
+    }
+  } else {
+    this.ready();  // not sure what this does... from meteor doc
+  }
 });
 
 Meteor.users.allow({

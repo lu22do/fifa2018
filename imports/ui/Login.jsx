@@ -65,7 +65,7 @@ export default class Login extends Component {
         </div>
 
         <div className="container">
-          New? <Link to="/register">Register</Link>
+          You don't have an account yet? <Link to="/register">Sign-up here</Link>
         </div>
       </div>
     )
