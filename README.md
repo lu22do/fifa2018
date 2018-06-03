@@ -30,3 +30,4 @@ Todos:
 Improvement ideas:
 - support email notifications
 - add support for reset password
+- ask confirmation before deleting a selection
