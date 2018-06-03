@@ -11,8 +11,8 @@ Meteor.methods({
     console.log('sendTestEmail');
     Email.send({
       to: "ephem22-fifatest1@yahoo.com",
-      from: "no-reply@fifa2018otv.com",
-      subject: "Test Email",
+      from: "no-reply@fifa2018otv.herokuapp.com",
+      subject: "Test Email 2",
       text: "The contents of our email in plain text.",
     });
   },
