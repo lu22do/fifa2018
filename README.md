@@ -8,26 +8,23 @@ Concepts used in this app:
 The UI react components are the following:
 - App
 - Topbar
+- Welcome
 - Auth:
   - Login
   - Register
-- Users:
+- Users (admin only)
   - User list
+- Game state (admin only)
 - All selections  
 - Your selections:
-  - Selection list
+  - Selection list/ranking
   - New selection
-  - Edit selection (missing)
 - Matches
   - Match list
   - New match
   - Edit match
-- Team scores
-
-Todos:
-- prevent deletion of selections after competition has started 
+- Team list
 
 Improvement ideas:
-- support email notifications
 - add support for reset password
 - ask confirmation before deleting a selection

@@ -44,8 +44,17 @@ Selections.allow({
     var currentUser = Meteor.user();
 
     // can only remove your own documents
-    return doc.owner === userId ||
-           (currentUser && currentUser.username === 'admin');
+    if (doc.owner === userId) {
+      // cannot delete selection once game is started
+      if (GameState.find({}).fetch()[0].state !== 'preparing') {
+        return false;
+      }
+
+      return true;
+    }
+
+    // admin can always delete
+    return (currentUser && currentUser.username === 'admin');
   },
   fetch: ['owner']  // fetch only owner from the db to do the above checks
 });

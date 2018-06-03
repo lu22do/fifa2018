@@ -53,6 +53,8 @@ class SelectionList extends Component {
   }
 
   renderSelections() {
+    const isGamePreparing = this.props.gameState ? this.props.gameState.state === 'preparing' : false;
+
     return this.props.selections.map((selection) => (
       <tr key={selection.id}>
         <td>{selection.rank}</td>
@@ -62,7 +64,7 @@ class SelectionList extends Component {
         <td>{selection.created}</td>
         <td>{selection.score}</td>
         <td>
-          {selection.isMySelection &&
+          {isGamePreparing && selection.isMySelection &&
             <div>
               <a onClick={this.deleteSelection} data-id={selection.id} href="">Delete</a>
             </div>
@@ -105,6 +107,7 @@ class SelectionList extends Component {
 }
 
 export default withTracker(props => {
+  const gameState = GameState.findOne({});
   let query = {};
   if (props.match.params.id) {
     query = {owner: props.match.params.id};
@@ -115,7 +118,7 @@ export default withTracker(props => {
   let prevScore = -1;
 
   const selections = Selections.find(query, {sort:{score: -1, created: 1}}).map(selection => {
-    let user = Meteor.users.findOne(selection.owner);
+    const user = Meteor.users.findOne(selection.owner);
     let isMySelection = false;
 
     if (Meteor.userId() === selection.owner ||
@@ -144,6 +147,7 @@ export default withTracker(props => {
     selections,
     selectionCount,
     teams,
-    compactLayout: props.match.params.id? false : true
+    compactLayout: props.match.params.id? false : true,
+    gameState
   };
 })(SelectionList);
