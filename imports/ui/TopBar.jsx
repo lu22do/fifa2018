@@ -35,7 +35,7 @@ class TopBar extends Component {
               <span className="icon-bar"></span>
             </button>
 
-            <Link className="navbar-brand" to="/">The FIFA 2018 Game</Link>
+            <Link className="navbar-brand" to="/">The FIFA 2018 OTV Game</Link>
           </div>
 
           {currentUser &&
