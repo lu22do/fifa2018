@@ -40,6 +40,7 @@ http@1.4.1
 id-map@1.1.0
 jquery@1.11.11
 launch-screen@1.1.1
+lee:countdown@2.5.2
 livedata@1.0.18
 localstorage@1.2.0
 logging@1.1.20
