@@ -34,12 +34,14 @@ function UpdateScores() {
   });
 
   Matchs.find({}).map(function(match) {
-    if (match.winner != "Draw") {
+    if ((match.winner != "Draw") && (match.winner != "Upcoming Game")) {
       teams[match.winner] += 3;
     }
     else {
-      teams[match.team1] += 1;
-      teams[match.team2] += 1;
+      if (match.winner === "Draw") {
+        teams[match.team1] += 1;
+        teams[match.team2] += 1;
+      }
     }
 
     let goalMultiplier = 0.3;
