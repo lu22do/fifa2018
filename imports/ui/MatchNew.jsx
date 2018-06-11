@@ -11,12 +11,12 @@ class MatchNew extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event) {
+  handleSubmit(match) {
     let that = this;
 
     if (!Matchs.find({team1: this.matchEntry.state.team1,
                       team2: this.matchEntry.state.team2}).count()) {
-      Matchs.insert(this.matchEntry.state,
+      Matchs.insert(match,
                     function(err, _id) {
                       if (err) {
                         alert('Unexpected error creating this match! (' + err + ')');

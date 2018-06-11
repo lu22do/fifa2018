@@ -16,11 +16,11 @@ class MatchEdit extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event) {
+  handleSubmit(match) {
     let that = this;
 
     Matchs.update(this.props.match._id,
-                  {$set: this.matchEntry.state},
+                  {$set: match},
                   function(err, _id) {
                     if (err) {
                       alert('Unexpected error updating this match (' + err + ')!')

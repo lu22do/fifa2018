@@ -91,12 +91,10 @@ export default class MatchEntry extends Component {
     super(props);
 
     this.state = {
-      loaded: false,
       team1: this.props.match ? this.props.match.team1 : TeamList[0],
       team2: this.props.match ? this.props.match.team2 : TeamList[0],
-      date: this.props.match ? 
+      date: this.props.match ?
             (this.props.match.date ? moment(this.props.match.date) : '') : '',
-//      score: this.props.match ? this.props.match.score : '',
       phase: this.props.match ? this.props.match.phase : 'group',
       winner: this.props.match ? this.props.match.winner : TeamList[0],
       team1goals: this.props.match ? this.props.match.team1goals : 0,
@@ -126,11 +124,12 @@ export default class MatchEntry extends Component {
       return;
     }
 
-    if (this.state.date) {
-      this.state.date = this.state.date.toDate();
+    let match = Object.assign({}, this.state); // clone object
+    if (match.date) {
+      match.date = match.date.toDate(); // convert Moment -> regular Date
     }
 
-    this.props.handleSubmit(event); // pass to parent
+    this.props.handleSubmit(match); // pass to parent
   }
 
   handleDateChange(moment) {
@@ -150,7 +149,7 @@ export default class MatchEntry extends Component {
 
   renderTeamList() {
     return TeamList.sort().map((team) => (
-      <option value={team}>{team}</option>
+      <option value={team} key={team}>{team}</option>
     ));
   }
 
@@ -202,15 +201,6 @@ export default class MatchEntry extends Component {
               </label>
             </div>
           </div>
-
-{/*
-          <div className="form-group">
-            <label>Score</label>
-            <input className="form-control" type="text" name="score"
-              value={this.state.score}
-              onChange={this.handleChange} />
-          </div>
-*/}
 
           <div className="form-group">
             <label>Winning team</label><br/>
