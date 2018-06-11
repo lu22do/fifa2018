@@ -74,7 +74,10 @@ class Welcome extends Component {
 
         <h3>Welcome to the 2018 FIFA Game made by the OpenTV-forevers!</h3>
         <br/>
-        <p className="alert alert-danger">Note: This is still in beta testing!</p>
+
+        {/*
+          <p className="alert alert-danger">Note: This is still in beta testing!</p>
+        */}
 
         <CountDownClock text="Countdown before first match" targetDate={targetDate}/>
 
