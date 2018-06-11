@@ -15,7 +15,8 @@ class MatchNew extends Component {
     let that = this;
 
     if (!Matchs.find({team1: this.matchEntry.state.team1,
-                      team2: this.matchEntry.state.team2}).count()) {
+                      team2: this.matchEntry.state.team2,
+                      phase: this.matchEntry.state.phase}).count()) {
       Matchs.insert(match,
                     function(err, _id) {
                       if (err) {
