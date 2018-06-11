@@ -69,16 +69,16 @@ class SelectionNew extends Component {
 
   renderTeams(teams) {
     return teams.map((team) => (
-      <option value={team}>{team}</option>
+      <option value={team} key={team}>{team}</option>
     ));
   }
 
   renderGroupSelectors() {
-    return Groups.map((group) => {
+    return Groups.map((group, index) => {
       let value = this.state[group.name];
 
       return (
-        <div className="form-group">
+        <div className="form-group" key={index}>
           <label>Select a team for "{group.name}"</label><br/>
           <select name={group.name} value={value} onChange={this.handleChange}>
             {this.renderTeams(group.teams)}

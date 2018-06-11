@@ -21,7 +21,7 @@ class SelectionList extends Component {
       if (this.props.compactLayout) {
         return (
           <img width="23" height="15" src={src} style={{marginRight: 8}}
-            data-toggle="tooltip" data-placement="top" title={team} />
+            data-toggle="tooltip" data-placement="top" title={team} key={team} />
         )
       }
       else {
@@ -36,7 +36,7 @@ class SelectionList extends Component {
           }
         });
         return (
-          <div>
+          <div key={team}>
             <img width="23" height="15" src={src} /> {team} ({score})
           </div>
         )

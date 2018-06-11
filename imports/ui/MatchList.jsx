@@ -26,7 +26,7 @@ class MatchList extends Component {
 
   renderMatchs() {
     return this.props.matchs.map((match) => (
-      <tr key={match.id}>
+      <tr key={match._id}>
         <td>{this.renderTeam(match.team1)}</td>
         <td>{this.renderTeam(match.team2)}</td>
         <td>{match.date}</td>
