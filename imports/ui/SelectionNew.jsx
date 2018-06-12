@@ -96,7 +96,7 @@ class SelectionNew extends Component {
 
           <div className="form-group">
             <label>Selection name</label>
-            <input className="form-control" type="text" name="name" maxlength="40"
+            <input className="form-control" type="text" name="name" maxLength="40"
               value={this.state.name}
               onChange={this.handleChange} />
           </div>
