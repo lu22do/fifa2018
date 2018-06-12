@@ -82,7 +82,6 @@ class Welcome extends Component {
         <CountDownClock text="Countdown before first match" targetDate={targetDate}/>
 
         <br/>
-
         <h4>Goal</h4>
         <p>
         The goal of the game is to get your team selections accumulate the
@@ -90,7 +89,6 @@ class Welcome extends Component {
         </p>
 
         <br/>
-
         <h4>Rules</h4>
         <ul>
           <li>To create a selection, pick 1 team from each group by
@@ -109,6 +107,12 @@ class Welcome extends Component {
           <li>After the competition kicks off, it is not possible to create/delete/replace a selection. Your selections can be done until June 14th 15:00 UTC, just before the opening game of FIFA 2018</li>
           <li>The player with most total points win. In case of a tie, all those folks win.</li>
         </ul>
+
+        <br/>
+        <h4>Ze code</h4>
+        You can find the code of this site on <a href="https://github.com/lu22do/fifa2018">Github</a>.
+
+        <br/>
       </div>
     )
   }
