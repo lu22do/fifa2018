@@ -122,7 +122,7 @@ class Register extends Component {
 
                 <div className={userNameClass}>
                   <label>User name</label>
-                  <input className="form-control" type="text" name="userName" maxlength="40"
+                  <input className="form-control" type="text" name="userName" maxLength="40"
                     value={this.state.username}
                     onChange={this.handleInputChange}
                     onFocus={this.handleFocus} />
