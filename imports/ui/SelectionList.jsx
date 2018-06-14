@@ -3,7 +3,7 @@ import Selections from '../../lib/selections';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router-dom';
 
-class SelectionList extends Component {
+export class SelectionList extends Component {
   deleteSelection(e) {
     e.preventDefault();
     let id = e.target.getAttribute('data-id');
@@ -59,10 +59,15 @@ class SelectionList extends Component {
       <tr key={selection.id}>
         <td>{selection.rank}</td>
         <td>{selection.name}</td>
+      {!this.props.renderEmail &&
         <td>{this.renderTeams(selection.teams)}</td>
+      }
         <td>{selection.ownername}</td>
+      {!this.props.renderEmail &&
         <td>{selection.created}</td>
+      }
         <td>{selection.score}</td>
+      {!this.props.renderEmail &&
         <td>
           {isGamePreparing && selection.isMySelection &&
             <div>
@@ -70,6 +75,7 @@ class SelectionList extends Component {
             </div>
           }
         </td>
+      }
       </tr>
     ));
   }
@@ -84,11 +90,17 @@ class SelectionList extends Component {
               <tr>
                 <th>Ranking</th>
                 <th>Name</th>
+              {!this.props.renderEmail &&
                 <th>Teams</th>
+              }
                 <th>Owner</th>
+              {!this.props.renderEmail &&
                 <th>Creation date</th>
+              }
                 <th>Score</th>
+              {!this.props.renderEmail &&
                 <th>Action</th>
+              }
               </tr>
               </thead>
               <tbody>
@@ -106,7 +118,7 @@ class SelectionList extends Component {
   }
 }
 
-export default withTracker(props => {
+export default SelectionListContainer = withTracker(props => {
   const gameState = GameState.findOne({});
   let query = {};
   if (props.match.params.id) {

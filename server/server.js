@@ -5,7 +5,8 @@ if (!Meteor.users.findOne({username: 'admin'})) {
   }
 }
 
-// set/reset admin password
+// set/reset admin password (side effects: causes admin to have to relogin after
+// each server restart e.g. in dev mode)
 let password = 'admin';
 if (Meteor.settings.adminPassword) {
   password = Meteor.settings.adminPassword;

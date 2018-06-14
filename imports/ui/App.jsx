@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 import TopBar from './TopBar.jsx';
 import Welcome from './Welcome.jsx';
-import SelectionList from './SelectionList.jsx';
+import SelectionListContainer from './SelectionList.jsx';
 import SelectionNew from './SelectionNew.jsx';
 import Users from './Users.jsx';
 import Login from './Login.jsx';
@@ -40,8 +40,8 @@ export default class App extends Component {
           <Route path="/login" component={Login}/>
           <Route path="/register" component={Register}/>
           <Route path="/verify-email/:token" component={VerifyEmail}/>
-          <PrivateRoute path='/selection-list' exact component={SelectionList}/>
-          <PrivateRoute path='/selection-list/:id' component={SelectionList}/>
+          <PrivateRoute path='/selection-list' exact component={SelectionListContainer}/>
+          <PrivateRoute path='/selection-list/:id' component={SelectionListContainer}/>
           <PrivateRoute path='/new-selection' component={SelectionNew}/>
           <PrivateRoute path='/users' component={Users}/>
           <PrivateRoute path='/match-list' component={MatchList}/>

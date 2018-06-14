@@ -14,8 +14,8 @@ class Users extends Component {
 
   sendTestEmail(e) {
     e.preventDefault();
-    Meteor.call( 'sendTestEmail', (error) => {
-      if (error) {
+    Meteor.call( 'sendTestEmail', (err) => {
+      if (err) {
         alert('sendTestEmail error (' + err + ')');
       }
     });
