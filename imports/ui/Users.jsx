@@ -12,15 +12,6 @@ class Users extends Component {
     });
   }
 
-  sendTestEmail(e) {
-    e.preventDefault();
-    Meteor.call( 'sendTestEmail', (err) => {
-      if (err) {
-        alert('sendTestEmail error (' + err + ')');
-      }
-    });
-  }
-
   renderUsers() {
     return this.props.users.map((user) => (
       <tr key={user._id}>
@@ -53,10 +44,6 @@ class Users extends Component {
               {this.renderUsers()}
             </tbody>
           </table>
-        </div>
-        <br/><br/>
-        <div>
-          <a className="btn btn-default" onClick={this.sendTestEmail} href="">Send test email</a>
         </div>
       </div>
     )

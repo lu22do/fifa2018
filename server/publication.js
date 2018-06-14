@@ -99,6 +99,23 @@ GameState.allow({
   }
 });
 
+// Editorials
+Meteor.publish("editorials", function () {
+  return Editorials.find();
+});
+
+Editorials.allow({
+  insert: function (userId, doc) {
+    return Meteor.user().username === 'admin';
+  },
+  update: function (userId, doc, fields, modifier) {
+    return Meteor.user().username === 'admin';
+  },
+  remove: function (userId, doc) {
+    return Meteor.user().username === 'admin';
+  }
+});
+
 // user data
 Meteor.publish("userData", function () {
   if (this.userId) {

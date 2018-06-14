@@ -14,7 +14,7 @@ import MatchList from './MatchList.jsx';
 import MatchNew from './MatchNew.jsx';
 import MatchEdit from './MatchEdit.jsx';
 import TeamList from './TeamList.jsx';
-import GameStateEdit from './GameStateEdit.jsx';
+import Admin from './Admin.jsx';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
@@ -48,7 +48,7 @@ export default class App extends Component {
           <PrivateRoute path='/new-match' component={MatchNew}/>
           <PrivateRoute path='/edit-match/:id' component={MatchEdit}/>
           <PrivateRoute path='/team-list' component={TeamList}/>
-          <PrivateRoute path='/game-state' component={GameStateEdit}/>
+          <PrivateRoute path='/admin' component={Admin}/>
         </div>
       </BrowserRouter>
     )

@@ -9,6 +9,7 @@ Meteor.subscribe('matchs');
 Meteor.subscribe('userData');
 Meteor.subscribe('teams');
 Meteor.subscribe('game-state');
+Meteor.subscribe('editorials');
 
 Meteor.startup(() => {
   ReactDOM.render(<App />, document.getElementById('render-target'));

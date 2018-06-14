@@ -92,8 +92,8 @@ class TopBar extends Component {
 
                 {isAdmin &&
                   <li>
-                    <NavLink to="/game-state" activeClassName="active">
-                      <span className="glyphicon glyphicon-bell"></span> Game State
+                    <NavLink to="/admin" activeClassName="active">
+                      <span className="glyphicon glyphicon-bell"></span> Admin
                     </NavLink>
                   </li>
                 }
