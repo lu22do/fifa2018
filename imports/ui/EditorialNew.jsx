@@ -24,6 +24,11 @@ export default class EditorialNew extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
+    let res = confirm("Are you sure you want to send the email?");
+    if (res == false) {
+      return;
+    }
+
     let author = this.state.author;
     let content = this.state.content;
     let that = this;
@@ -63,7 +68,7 @@ export default class EditorialNew extends Component {
           </div>
 
           <div className="form-group">
-            <label>Content</label>
+            <label>Content (note: linefeeds will be ignored)</label>
             <textarea className="form-control" rows="10" cols="80" type="text" name="content" maxLength="500"
               value={this.state.content}
               onChange={this.handleChange} />

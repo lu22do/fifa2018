@@ -31,7 +31,7 @@ function prepareEmail(title) {
     '.table th, .table td { padding: 4px; text-align: left; border-top: 1px solid #ddd; } ' +
     '* { font-family: sans-serif; font-size: 14px; }';
 
-  const editorial = Editorials.findOne({}, {sort:{created: -1}}).content;
+  const editorial = Editorials.findOne({}, {sort:{created: -1}});
 
   const emailHTML = renderEmail(
     <EmailComponent title={title} headCSS={headCSS} lang="en">
@@ -51,7 +51,11 @@ function prepareEmail(title) {
 
         <br/>
         <Span>
-          {editorial}
+          From {editorial.author}:
+        </Span>
+        <br/>
+        <Span>
+          {editorial.content}
         </Span>
 
         <br/><br/>
