@@ -82,17 +82,19 @@ Meteor.methods({
     console.log('Broadcasting email');
 
     const title = 'FIFA2018 OTV - Top 10!';
-
+    const content = prepareEmail(title);
     const fullEmails = Meteor.users.find({username: {$not: {$eq: 'admin'}}}, {fields: {emails: 1}}).fetch();
     let emails = fullEmails.map(obj => {
       return obj.emails[0].address;
     });
 
-    Email.send({
-       to: emails,
-       from: "no-reply@fifa2018otv.com",
-       subject: title,
-       html: prepareEmail(title)
+    emails.forEach((email) => {
+      Email.send({
+         to: email,
+         from: "FIFA2018 OTV <no-reply-test@fifa2018otv.com>",
+         subject: title,
+         html: content
+      });
     });
   },
 
@@ -106,6 +108,7 @@ Meteor.methods({
 
   sendTestEmail() {
     const title = 'FIFA2018 OTV - Top 10!';
+    const emails = ["ephem22-fifatest1@yahoo.com", "ludovic22pierre@gmail.com"];
 
     //console.log('sendTestEmail write file');
     //fs.writeFileSync('/Users/lpierre/Downloads/mail.html', emailHTML);
@@ -127,11 +130,13 @@ Meteor.methods({
 
     // console.log('sendTestEmail: ' + emailHTML);
 
-    Email.send({
-      to: "ephem22-fifatest1@yahoo.com",
-      from: "no-reply@fifa2018otv.com",
-      subject: title,
-      html: prepareEmail(title)
+    emails.forEach((email) => {
+      Email.send({
+        to: email,
+        from: "FIFA2018 OTV Test <no-reply-test@fifa2018otv.com>",
+        subject: title,
+        html: prepareEmail(title)
+      });
     });
   },
 });
