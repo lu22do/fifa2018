@@ -60,7 +60,7 @@ class Welcome extends Component {
   render() {
     const currentUser = this.props.currentUser;
     const showAlert = currentUser ? (currentUser.emails? !currentUser.emails[0].verified : false) : false;
-    const targetDate = new Date(Date.UTC(2018, 5, 14, 15, 0, 0, 0));    // 14 Jun 2018 - 15:00 UTC
+    const targetDate = new Date(Date.UTC(2018, 6, 15, 15, 0, 0, 0));    // 15 Jul 2018 - 15:00 UTC
 
     return (
       <div className="container">
@@ -79,7 +79,7 @@ class Welcome extends Component {
           <p className="alert alert-danger">Note: This is still in beta testing!</p>
         */}
 
-        <CountDownClock text="Countdown before first match" targetDate={targetDate}/>
+        <CountDownClock text="Countdown until the final" targetDate={targetDate}/>
 
         <br/>
         <h4>Goal</h4>
